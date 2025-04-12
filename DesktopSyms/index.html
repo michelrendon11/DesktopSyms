@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style/style.css">
+    <title>Tank Sentry</title>
+</head>
+<body>
+    <div class="mainContainer" id="title">
+        <h1>TANK SENTRY</h1>
+    </div>
+    
+    <div class="container" id="findButtonsContainer">
+        <button type="button" class="butt" id="seeEverythingId" onclick="seeEverything()">See Everyting Bluetooth</button>
+        <button type="button" class="butt" id="FindSymsId" onclick="connectSym()">Find SYM's</button>
+    </div>
+
+    <div class="container" id="textAreaContainer">
+        <label for="textArea"></label>
+        <textarea name="textArea" title="Sym Responce" id="textAreaId" rows="20" cols="80" disabled wrap="hard"></textarea>
+    </div>
+
+    <div class="container" id="mainButtonsContainer">
+        <button type="button" class="butt set" id="hhId" onclick="hh()">Connect/hh</button>
+        <button type="button" class="butt set" id="scId" onclick="sc()">Settings &ltSC&gt</button>
+        <button type="button" class="butt set" id="spId" onclick="sp()">Purge &ltSP&gt</button>
+        <button type="button" class="butt set" id="sdId" onclick="sd()">Data &ltSD&gt</button>
+        <button type="button" class="butt set reboot" id="rebootId" onclick="reboot()">Reboot &ltSR&gt</button>
+    </div>
+
+    <div class="container" id="convertContainer">
+        <button type="button" class="butt convert" id="convertToOlderId" onclick="">Convert SYM to older Model</button>
+        <button type="button" class="butt convert" id="calibateId" onclick="">Calibrate SYM to Tank Height &ltC,&gt</button>
+    </div>
+
+    <div class="container" id="ynContainer">
+        <button type="button" class="butt select yn" id="yId" onclick="y()">Yes &ltY&gt</button>
+        <button type="button" class="butt select yn" id="nId" onclick="n()">No &ltN&gt</button>
+    </div>
+
+    <div class="container" id="olderSymsModelContainer">
+        <button type="button" class="butt select zsSym" id="zsSymId" onclick="zsSym()">&ltZS&gt</button>
+        <button type="button" class="butt select zmSym" id="zmSymId" onclick="zmSym()">&ltZM&gt</button>
+        <button type="button" class="butt select zrSym" id="zrSymId" onclick="zrSym()">&ltZR&gt</button>
+        <button type="button" class="butt select sym23qs" id="sym23qsId" onclick="sym23qs()">&lt23QS&gt</button>
+        <button type="button" class="butt select sym23qr" id="sym23qrId" onclick="sym23qr()">&lt23QR&gt</button>
+        <button type="button" class="butt select uSym" id="uSymId" onclick="uSym()">&ltZU&gt</button>
+    </div>
+
+    <section class="container" id="calibrationSection">
+        <div class="container" id="calibrationContainer">
+            <div class="container height">
+                <form>
+                    <label for="heigthRangeId">Tank Heigth</label>
+                    <label for="heigthNumberId"></label>
+                    <input type="number" id="heigthNumberId" name="heightNumberName" class="" value="32" min="9" max="80" required oninput="this.form.heigthRangeId.value=this.value">
+                    <input type="range" id="heigthRangeId" name="heigthRangeName" min="9" max="80" value="32" oninput="this.form.heigthNumberId.value = this.value">
+                </form>
+            </div>
+            <div class="container empty">
+                <form>
+                    <label for="emptyRangeId">Empty Point</label>
+                    <label for="emptyNumberId"></label>
+                    <input type="number" id="emptyNumberId" name="emptyNumberName" class="" value="0" min="0" max="15" required oninput="this.form.emptyRangeId.value=this.value">
+                    <input type="range" id="emptyRangeId" name="emptyRangeName" min="0" max="15" value="0" oninput="this.form.emptyNumberId.value=this.value">
+                </form>
+            </div>
+            <div class="container radios">
+                <input type="radio" id="waterRadioId" name="waterFuelName" value="W" class="" checked="checked">
+                <label for="waterRadioId" id="waterRadioLabel" class="water">Water</label>
+                <input type="radio" id="fuelRadioId" name="waterFuelName" value="D">
+                <label for="fuelRadioId" id="fuelRadioLabel" class="fuel">Fuel</label>
+            </div>
+        </div>
+        <div class="container">
+            <button type="button" class="butt submit" id="submitCalibrationId" onclick="">Submit</button>
+        </div>
+    </section>
+
+    <footer class="mainContainer" id="footerSection">
+        <div class="container">
+            <p id="deviceInfo"></p>
+        </div>
+    </footer>
+
+<script src="js/index.js"></script>
+
+
+    <!-- <div id="resources">
+        <h3 style="color: black;">Resources:</h3>
+        <p><span class="res">Google Bluetooth Internal Devices: </span> chrome://bluetooth-internals/#devices</p>
+        <p><span class="res">Assigned Numbers PDF: </span> chrome-extension://efaidnbmnnnibpcajpcglclefindmkaj/https://www.bluetooth.com/wp-content/uploads/Files/Specification/HTML/Assigned_Numbers/out/en/Assigned_Numbers.pdf?v=1742134068537</p>
+        <p><span class="res">Chrome Developer Exaple Code: </span> https://developer.chrome.com/docs/capabilities/bluetooth</p>
+        <p><span class="res">Web Bluetooth / Write Descriptor Sample: </span> https://googlechrome.github.io/samples/web-bluetooth/write-descriptor.html?service=49535343-fe7d-4ae5-8fa9-9fafd205e455&characteristic=49535343-6daa-4d02-abf6-19569aca69fe</p>
+        <p><span class="res">WebBluetooth Registries: </span> https://github.com/WebBluetoothCG/registries </p>
+        <p><span class="res">Web Bluetooth API: </span>https://webbluetoothcg.github.io/web-bluetooth/#notification-events</p>
+        <p><span class="res">Web Serial App: </span> https://web-serial-app.netlify.app/</p>
+        <p><span class="res">Read Characteristic Value: </span> https://googlechrome.github.io/samples/web-bluetooth/read-characteristic-value-changed.html</p>
+    </div> -->
+
+
+</body>
+</html>
