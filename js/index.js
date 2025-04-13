@@ -124,6 +124,19 @@ const footerSectionDisplay = footerSection.style.display;
 const deviceInfo = document.getElementById("deviceInfo");
 const deviceInfoDisplay = deviceInfo.style.display;
 
+const style3D = document.getElementById("style3D");
+const styleFlat = document.getElementById("styleFlat");
+
+function flatSyleSheet(){
+    style3D.disabled = true;
+    styleFlat.disabled = false;
+}
+
+function style3DSheet(){
+    style3D.disabled = false;
+    styleFlat.disabled = true;
+}
+
 window.onload = function(){
     console.log(navigator.platform);
     console.log(navigator.appVersion);
@@ -165,10 +178,26 @@ async function connectSym(){
 }
 
 async function writeToSym(string){
+    textAreaId.innerHTML += '--->' + string + '<---' + '\n\n';
+    if(textAreaId == '<SR>'){
+        delay(3000);
+        textAreaId.innerHTML = '';
+    }
     try{
         await writer.write(sendMessages(string));
+        textAreaId.scrollTop = textAreaId.scrollHeight;
     }catch(error){
         console.log(error); 
+    }
+}
+
+function sendMessages(string){
+    try{
+        const encoder = new TextEncoder();
+        const encoded = encoder.encode(string);
+        return new Int8Array(encoded)
+    }catch(error){
+        console.log(error);
     }
 }
 
@@ -191,221 +220,22 @@ async function readFromSym(){
     }
 }
 
-async function hh() {
-    try{
-        await writeToSym('hh');
-        textAreaId.innerHTML += '-->> hh' + '\n';
-    }catch(error){
-        console.log(error);
-    }
-    // showAllButtons();
-}
-
-async function sc(){
-    try{
-        await writeToSym('<SC>');
-        textAreaId.innerHTML += '-->> <SC>' + '\n';
-    }catch(error){
-        console.log(error);
-    }
-}
-
-async function sp(){
-    try{
-        await writeToSym('<SP>');
-        textAreaId.innerHTML += '-->> <SP>' + '\n';
-    }catch(error){
-        console.log(error);
-    }
-}
-
-async function sd(){
-    try{
-        await writeToSym('<SD>');
-        textAreaId.innerHTML += '-->> <SD>' + '\n';
-    }catch(error){
-        console.log(error);
-    }
-}
-
-async function y(){
-    try{
-        await writeToSym('Y');
-        textAreaId.innerHTML += '-->> Y' + '\n';
-    }catch(error){
-        console.log(error);
-    }
-}
-
-async function n(){
-    try{
-        await writeToSym('N');
-        textAreaId.innerHTML += '-->> N' + '\n';
-    }catch(error){
-        console.log(error);
-    }
-}
-
-async function zsSym(){
-    try{
-        await writeToSym('<ZS>');
-        textAreaId.innerHTML += '-->> <ZS>' + '\n';
-    }catch(error){
-        console.log(error);
-    }
-}
-
-async function zmSym(){
-    try{
-        await writeToSym('<ZM>');
-        textAreaId.innerHTML += '-->> <ZM>' + '\n';
-    }catch(error){
-        console.log(error);
-    }
-}
-
-async function zrSym(){
-    try{
-        await writeToSym('<ZR>');
-        textAreaId.innerHTML += '-->> <ZR>' + '\n';
-    }catch(error){
-        console.log(error);
-    }
-}
-
-async function sym23qs(){
-    try{
-        await writeToSym('<23QS>');
-        textAreaId.innerHTML += '-->> <23QS>' + '\n';
-    }catch(error){
-        console.log(error);
-    }
-}
-
-async function sym23qr(){
-    try{
-        await writeToSym('<23QR>');
-        textAreaId.innerHTML += '-->> <23QR>' + '\n';
-    }catch(error){
-        console.log(error);
-    }
-}
-
-async function uSym(){
-    try{
-        await writeToSym('<ZU>');
-        textAreaId.innerHTML += '-->> <ZU>' + '\n';
-    }catch(error){
-        console.log(error);
-    }
-}
-
-async function reboot(){
-    try{
-        await writeToSym('<SR>');
-        textAreaId.innerHTML += '-->> <SR>' + '\n';
-        hhId.disabled = true;
-        hhId.classList.add("disable");
-        textAreaId.value = '';
-        showMainButtons();
-        hideAllButtons();
-    }catch(error){
-        console.log(error);
-    }
-}
-
-function sendMessages(string){
-    try{
-        const encoder = new TextEncoder();
-        const encoded = encoder.encode(string);
-        return new Int8Array(encoded)
-    }catch(error){
-        console.log(error);
-    }
-}
-
-async function delay(ms){
-    return new Promise(resolve => setTimeout(resolve, ms));
-}
-
-// ------------------>>>>>>>
-// ------------------>>>>>>>
-// ------------------>>>>>>>
-
-async function symBluetooth(){
-    document.getElementById("displayInfo").innerHTML = "";
-    const symName = ' SYMU';
-    const options = {
-        filters: [
-                {namePrefix: symName,},
-                {services: ['00001800-0000-1000-8000-00805f9b34fb']},
-                {services: ['0000180a-0000-1000-8000-00805f9b34fb']},
-                {services: ['01234567-89ab-cdef-0123-456789abcdef']},
-                {services: ['49535343-fe7d-4ae5-8fa9-9fafd205e455']}]};
-    try{
-        device = await navigator.bluetooth.requestDevice(options);
-        console.log(device);
-        connect(device);
-    }catch(error){
-        console.log(error);
-    }
-}
-
-async function connect(device){
-    server = await device.gatt.connect();
-    displaySymName(device);
-    if(server.connected){
-        console.log("Is Connected");
-        hideMainButtons();
-        disconnectBluetoothId.style.display = disconnectBluetoothDisplay;
-    }
-    const service = await server.getPrimaryService('49535343-fe7d-4ae5-8fa9-9fafd205e455');
-    getBluetoothService(service);
-}
-
-async function getBluetoothService(service){
-    let str = "hh";
-    const hh = new TextEncoder();
-    const hhDecoder = new TextDecoder();
-    const array = new Int16Array(hh.encode(str));
-    const characteristic = await service.getCharacteristic('49535343-1e4d-4bd9-ba61-23c647249616');
-    await characteristic.writeValue(new Int8Array(new TextEncoder('hh', 'utf-8')));
-    const descriptor = await characteristic.getDescriptor('00002902-0000-1000-8000-00805f9b34fb');
-    console.log(await characteristic.readValue(new DataView(new ArrayBuffer(new Int8Array()))));
-    console.log(await descriptor.readValue(new DataView(new ArrayBuffer(new Int8Array()))));
-    console.log("Done");
-}
-
-function displaySymName(name){
-    document.getElementById("displayInfo").innerHTML += "Name: " + name.name + '<br/>';
-    document.getElementById("displayInfo").innerHTML += "ID: " + name.id + '<br/>'; 
-    document.getElementById("displayInfo").innerHTML += "Server Connected: " + name.gatt + '<br/>';
-}
-
-function disconnectBluetooth(){
-    device.gatt.disconnect();
-    showMainButtons();
-    disconnectBluetoothId.style.display = "none";
-    document.getElementById("displayInfo").innerHTML = "";
-    console.log(server); 
-}
+function hh() { writeToSym('hh'); }
+function sc(){ writeToSym('<SC>'); }
+function sp(){ writeToSym('<SP>'); }
+function sd(){ writeToSym('<SD>'); }
+function y(){ writeToSym('Y'); }
+function n(){ writeToSym('N'); }
+function zsSym(){ writeToSym('<ZS>'); }
+function zmSym(){ writeToSym('<ZM>'); }
+function zrSym(){ writeToSym('<ZR>'); }
+function sym23qs(){ writeToSym('<23QS>'); }
+function sym23qr(){ writeToSym('<23QR>'); }
+function uSym(){ writeToSym('<ZU>'); }
+function reboot(){ writeToSym('<SR>'); }
+async function delay(ms){ return new Promise(resolve => setTimeout(resolve, ms)); }
 
 function testDisplay(){
-    showAllButtons();
-    hhId.disabled = false;
-    hhId.classList.remove("disable");
-    calibateId.disabled = false;
-    calibateId.classList.remove("disable");
-    tankHeigthId.disabled = false;
-    tankHeigthId.classList.remove("disable");
-    emptyPointId.disabled = false;
-    emptyPointId.classList.remove("disable");
-    waterId.disabled = false;
-    waterId.classList.remove("disable");
-    fuelId.disabled = false;
-    fuelId.classList.remove("disable");
-    submitId.disabled = false;
-    submitId.classList.remove("disable");
     textAreaId.innerHTML =
 `Connected...
 -->> hh
@@ -564,75 +394,9 @@ from the SYM
 
 async function seeEverything(){
     try{
-        const allDevices = await navigator.bluetooth.requestDevice({acceptAllDevices: true});
+                const allDevices = await navigator.bluetooth.requestDevice({acceptAllDevices: true});
     }catch(error){
         console.log(error);
     }
 }
 
-// navigator.serial.addEventListener("connect", (e) => {
-//     // showButtons();
-// });
-// navigator.serial.addEventListener("disconnect", (e) => {
-//     // hideButtons();
-//     // document.getElementById("purgeAndDisconnect").innerHTML = "";
-// });
-
-
-// async function submitCalibration() {
-//     let tankHeigth = tHeigth.value;
-//     let emptyPoint = ePoint.value;
-//     let waterFuel = water.checked ? water.value : fuel.value;
-//     let text = '<' + tankHeigth + ',' + emptyPoint + ',' + waterFuel + '>';
-//     console.log(text);
-//     await writeToSym('<C,>');
-//     await delay(1000);
-//     await writeToSym(text);
-//     await delay(1000);
-//     await writeToSym('y');
-// }
-
-// function readHello(){
-//     try{
-//         serialMatch = symResponce.match(/[0-9]{6}/g );
-//         screenMessage = "SYM U - Serial# " + serialMatch + "<br/>";
-//         symResponce = "";
-//     }catch(error){
-//         console.log(error);
-//     }
-// }
-
-// function readSymInfo(){
-//     try{
-//         dateMatch = symResponce.match(/\d{2}\/\d{2}\/\d{4}/g);
-//         decimalMatch = symResponce.match(/\d{1}\.\d{2}/g);
-//         levelRageMatch = symResponce.match(/0 -\ [0-9]{2,3}/g);
-//         currentSettingsMatch = symResponce.slice(0, ((symResponce.search(/[0-9]/))-2));
-//         screenMessage += "Firmware Version: " + decimalMatch[2] + "<br/>" + "Production Date: " + dateMatch + "<br/>" + currentSettingsMatch + " " + levelRageMatch + "<br/>" + "Output Voltage Range: " + decimalMatch[0] + " - " + decimalMatch[1] + "<br/>";
-//         // document.getElementById("displayInfo").innerHTML = screenMessage;
-//         symResponce = "";
-//     }catch(error){
-//         console.log(error);
-//     }
-// }
-
-// function readSymReadings(){
-//     try{
-//         currentLevel = symResponce.slice(0, (symResponce.search(/vdc/i)));
-//         screenMessage += "Current Level: <br/>" + currentLevel;
-//         symResponce = "";
-//     }catch(error){
-//         console.log(error);
-//     }
-// }
-
-
-// async function symData(){
-//     try{
-//         await writeToSym('<si>');
-//         await delay(2000);
-//         await writeToSym('n');
-//         await delay(2000);
-//         await writeToSym('y');
-//     }catch(error){ console.log(error); }
-// }
