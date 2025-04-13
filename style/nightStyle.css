@@ -66,7 +66,7 @@ textarea{ resize: none; background-color: black; color: var(--textCode); border-
 .sym23qr{ background-color: var(--sym23qs);}
 .uSym{ background-color: var(--symU);}
 
-#calibrationContainer{font-weight: bold; font-size: 1.3rem; box-sizing: border-box; background-color: var(--buttonColor); border-radius: 5px; border: 0.1rem solid var(--darkBlue); width: 100%; align-items: center; margin: auto; margin-top: 1rem; height: auto; padding: 1rem 0rem;}
+#calibrationContainer{font-weight: bold; font-size: 1.3rem; box-sizing: border-box; background-color: var(--buttonColor); border-radius: 5px; width: 100%; align-items: center; margin: auto; margin-top: 1rem; height: auto; padding: 1rem 0rem;}
 
 @media screen and (max-width: 700px) { .height { display: block; } }
 @media screen and (max-width: 1000px) { .empty { display: block; } }
