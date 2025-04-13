@@ -126,15 +126,24 @@ const deviceInfoDisplay = deviceInfo.style.display;
 
 const style3D = document.getElementById("style3D");
 const styleFlat = document.getElementById("styleFlat");
+const nightStyle = document.getElementById("nightStyle");
 
 function flatSyleSheet(){
     style3D.disabled = true;
     styleFlat.disabled = false;
+    nightStyle.disabled = true;
 }
 
 function style3DSheet(){
     style3D.disabled = false;
     styleFlat.disabled = true;
+    nightStyle.disabled = true;
+}
+
+function nightSheet(){
+    style3D.disabled = true;
+    styleFlat.disabled = true;
+    nightStyle.disabled = false;
 }
 
 window.onload = function(){
@@ -151,6 +160,7 @@ window.onload = function(){
     }
     platformInfo += "<br/>" + navigator.appVersion;
     deviceInfo.innerHTML = platformInfo;
+    testDisplay();
 }
 
 async function connectSym(){ 
