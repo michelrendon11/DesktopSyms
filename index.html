@@ -3,12 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="style/style3D.css" id="style3D" disabled>
+    <link rel="stylesheet" href="style/styleFlat.css" id="styleFlat">
     <title>Tank Sentry</title>
 </head>
 <body>
     <div class="mainContainer" id="title">
-        <h1>TANK SENTRY</h1>
+        <h1 class="tankSentry">TANK SENTRY</h1>
+        <div class="dropdown">
+            <button class="dropdown">&#10247;</button>
+            <div class="dropdown-content">
+                <button class="" onclick="flatSyleSheet()">Flat Style</button>
+                <button class="" onclick="style3DSheet()">3D Style</button>
+            </div>
+        </div>
     </div>
     
     <div class="container" id="findButtonsContainer">
