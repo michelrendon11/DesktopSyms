@@ -1,4 +1,4 @@
-
+ 
 :root {
   --darkBlue: #23408F;
   --mediumBlue: #0080c4;
@@ -34,15 +34,15 @@ h1{ color: white; text-shadow: 3px 2px 2px black; float: left; position: absolut
 
 .dropdown { background-color: var(--darkBlue); color: white; font-size: 3rem; border: none; cursor: pointer; }
 .dropdown { float: right; margin-right: 0.5rem;}
-.dropdown-content { display: none; position: absolute; background-color: var(--darkBlue); z-index: 1; margin-top: 4.2rem; translate: -6rem; }
-.dropdown-content button { color: white; display: block; background-color: var(--darkBlue); font-size: 1.5rem; width: 10rem; padding: 10px; border-radius: 3px; border-color: transparent;}
+.dropdown-content { display: none; position: absolute; background-color: var(--darkBlue); z-index: 1; margin-top: 4.2rem; translate: -10rem; }
+.dropdown-content button { color: white; display: block; background-color: var(--darkBlue); font-size: 1.5rem; width: 13rem; padding: 10px; border-radius: 3px; border-color: transparent;}
 .dropdown-content button:hover {background-image: linear-gradient(var(--mediumBlue) 70%, var(--lightBlue));}
 .dropdown:hover .dropdown-content { display: block; }
 .dropdown:hover .dropdown { background-image: linear-gradient(var(--mediumBlue) 70%, var(--lightBlue)); }
 
 #footerSection{color: white; margin-top: 2rem;}
 
-textarea{ resize: none; background-color: black; color: var(--textCode); border-radius: 10px; border-width: 15px; width: 70%;}
+textarea{ resize: none; background-color: black; color: var(--textCode); border-radius: 10px; border-width: 15px; width: 70%; box-shadow: 0px 2px 5px black;}
 
 .container{display: inline-flexbox; text-align: center; margin-top: 10px; }
 
@@ -71,9 +71,9 @@ textarea{ resize: none; background-color: black; color: var(--textCode); border-
 
 div input, div label{font-size: 1.2rem; color: black; margin: 0.5rem 0rem; padding-inline: 0.5rem; display: inline;}
 
-input[type="number"]{ width: 3rem; display: inline-block;}
+input[type="number"]{ width: 3rem; display: inline-block; box-shadow: 0px 1px 3px black; font-weight: bold;}
 
-input[type="range"]{ width: 70%; display: inline-block;}
+input[type="range"]{ width: 70%; display: inline-block; box-shadow: 5px 2px 5px rgb(0, 44, 101); cursor: pointer; }
 
 input[type="radio"] { -webkit-appearance: none; -moz-appearance: none; appearance: none; border-radius: 50%; width: 20px; height: 20px; border: 0.15rem solid var(--mediumBlue); transition: 0.5s all linear; background-color: white; vertical-align: middle; }
 
