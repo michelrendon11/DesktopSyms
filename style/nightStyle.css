@@ -29,6 +29,8 @@
 
 body{background-color: black; font-family: "Droid Sans", sans-serif;}
 
+.content-wrapper { min-height: 100vh; }
+
 .mainContainer{ font-style: oblique; background-color: var(--buttonColor); width: 100%; height: auto; padding: 0.1rem 0; text-align: center; border-radius: 3px; display: inline-block; }
 
 h1{ color: white; float: left; position: absolute; margin-left: 40%; }
