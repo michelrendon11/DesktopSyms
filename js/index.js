@@ -147,6 +147,7 @@ function nightSheet(){
 }
 
 window.onload = function(){
+    initialize();
     console.log(navigator.platform);
     console.log(navigator.appVersion);
     console.log(window.navigator.userAgent);
@@ -161,7 +162,6 @@ window.onload = function(){
     platformInfo += "<br/>" + navigator.appVersion;
     deviceInfo.innerHTML = platformInfo;
     testDisplay();
-    initialize();
 }
 
 function showSearchButtons(){
