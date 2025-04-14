@@ -161,6 +161,51 @@ window.onload = function(){
     platformInfo += "<br/>" + navigator.appVersion;
     deviceInfo.innerHTML = platformInfo;
     testDisplay();
+    initialize();
+}
+
+function showSearchButtons(){
+    findButtonsContainer.style.display = findButtonsContainerDisplay;
+}
+
+function initialize(){
+    textAreaContainer.style.display = "none";
+    mainButtonsContainer.style.display = "none";
+    convertContainer.style.display = "none";
+    ynContainer.style.display = "none";
+    olderSymsModelContainer.style.display = "none";
+    calibrationSection.style.display = "none";
+    findButtonsContainer.style.display = findButtonsContainerDisplay;
+    textAreaId.innerHTML = '';
+}
+
+function initializeConnection(){
+    textAreaContainer.style.display = textAreaContainerDisplay;
+    mainButtonsContainer.style.display = mainButtonsContainerDisplay;
+    convertContainer.style.display = convertContainerDisplay;
+    ynContainer.style.display = ynContainerDisplay;
+    hhId.disabled = false;
+    hhId.classList.remove("disable");
+}
+
+function enableButtons(){
+    findButtonsContainer.style.display = "none";
+    scId.disabled = false;
+    scId.classList.remove("disable");
+    spId.disabled = false;
+    spId.classList.remove("disable");
+    sdId.disabled = false;
+    sdId.classList.remove("disable");
+    rebootId.disabled = false;
+    rebootId.classList.remove("disable");
+    convertToOlderId.disabled = false;
+    convertToOlderId.classList.remove("disable");
+    calibateId.disabled = false;
+    calibateId.classList.remove("disable");
+    yId.disabled = false;
+    yId.classList.remove("disable");
+    nId.disabled = false;
+    nId.classList.remove("disable");
 }
 
 async function connectSym(){ 
@@ -174,13 +219,14 @@ async function connectSym(){
         writer = port.writable.getWriter();
         console.log(port);
         readFromSym();
+        initializeConnection();
     } catch (error) { 
         console.log(error);
     }
     let conn = await port.connected;
     console.log(port);
     console.log(conn);
-    if(conn){
+    if(await conn){
         textAreaId.innerHTML += "SYM Paired..." + '\n';
     }else{
         textAreaId.innerHTML += "Opss... Try againg..." + '\n';
@@ -188,14 +234,10 @@ async function connectSym(){
 }
 
 async function writeToSym(string){
-    textAreaId.innerHTML += '--->' + string + '<---' + '\n\n';
-    if(textAreaId == '<SR>'){
-        delay(3000);
-        textAreaId.innerHTML = '';
-    }
+    textAreaId.innerHTML += '---- ' + string + ' ----' + '\n\n';
+    textAreaId.scrollTop = textAreaId.scrollHeight;
     try{
         await writer.write(sendMessages(string));
-        textAreaId.scrollTop = textAreaId.scrollHeight;
     }catch(error){
         console.log(error); 
     }
@@ -220,6 +262,11 @@ async function readFromSym(){
                 textAreaId.innerHTML += value + '\n';
                 textAreaId.scrollTop = textAreaId.scrollHeight;
             }
+            if(value.includes('REBOOTING')){
+                delay(4000);
+                initialize();
+                break;
+            }
             if (done) {
                 reader.releaseLock();
                 break;
@@ -230,19 +277,91 @@ async function readFromSym(){
     }
 }
 
-function hh() { writeToSym('hh'); }
-function sc(){ writeToSym('<SC>'); }
-function sp(){ writeToSym('<SP>'); }
-function sd(){ writeToSym('<SD>'); }
-function y(){ writeToSym('Y'); }
-function n(){ writeToSym('N'); }
-function zsSym(){ writeToSym('<ZS>'); }
-function zmSym(){ writeToSym('<ZM>'); }
-function zrSym(){ writeToSym('<ZR>'); }
-function sym23qs(){ writeToSym('<23QS>'); }
-function sym23qr(){ writeToSym('<23QR>'); }
-function uSym(){ writeToSym('<ZU>'); }
-function reboot(){ writeToSym('<SR>'); }
+function hh() { 
+    writeToSym('hh'); 
+    enableButtons();
+}
+function sc(){ 
+    writeToSym('<SC>'); 
+}
+function sp(){ 
+    writeToSym('<SP>'); 
+}
+function sd(){ 
+    writeToSym('<SD>'); 
+}
+function y(){ 
+    writeToSym('Y'); 
+}
+function n(){
+     writeToSym('N'); 
+}
+function zsSym(){ 
+    writeToSym('<ZS>'); 
+    convertedSym();
+}
+function zmSym(){ 
+    writeToSym('<ZM>'); 
+    convertedSym();
+}
+function zrSym(){ 
+    writeToSym('<ZR>'); 
+    convertedSym();
+}
+function sym23qs(){ 
+    writeToSym('<23QS>'); 
+    convertedSym();
+}
+function sym23qr(){ 
+    writeToSym('<23QR>'); 
+    convertedSym();
+}
+function uSym(){ 
+    writeToSym('<ZU>'); 
+    convertedSym();
+}
+function reboot(){ 
+    writeToSym('<SR>'); 
+    // initialize();
+}
+
+function convertSym(){
+    mainButtonsContainer.style.display = "none";
+    ynContainer.style.display = "none";
+    convertContainer.style.display = "none";
+    olderSymsModelContainer.style.display = olderSymsModelContainerDisplay;
+}
+
+function convertedSym(){
+    mainButtonsContainer.style.display = mainButtonsContainerDisplay;
+    ynContainer.style.display = ynContainerDisplay;
+    convertContainer.style.display = convertContainerDisplay;
+    olderSymsModelContainer.style.display = "none";
+}
+
+function calibrationSelectionSection(){
+    calibrationSection.style.display = calibrationSectionDisplay;
+    mainButtonsContainer.style.display = "none";
+    ynContainer.style.display = "none";
+    convertContainer.style.display = "none";
+    writeToSym('<C,>');
+}
+
+function calibratedSym(){
+    calibrationSection.style.display = "none";
+    mainButtonsContainer.style.display = mainButtonsContainerDisplay;
+    ynContainer.style.display = ynContainerDisplay;
+    convertContainer.style.display = convertContainerDisplay;
+}
+
+function submitCalibration(){
+    const heigh = heigthNumberId.value;
+    const empty = emptyNumberId.value;
+    const liquidType = waterRadioId.checked ? 'W' : 'D';
+    writeToSym('<' + heigh + ',' + empty + ',' + liquidType + '>');
+    calibratedSym();
+}
+
 async function delay(ms){ return new Promise(resolve => setTimeout(resolve, ms)); }
 
 function testDisplay(){
