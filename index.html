@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style/style3D.css" id="style3D" disabled>
-    <link rel="stylesheet" href="style/styleFlat.css" id="styleFlat" >
     <link rel="stylesheet" href="style/nightStyle.css" id="nightStyle" disabled>
+    <link rel="stylesheet" href="style/styleFlat.css" id="styleFlat" >
+    <link rel="stylesheet" href="style/Style.css" id="Style">
     <title>Tank Sentry</title>
 </head>
 <body>
@@ -18,8 +19,14 @@
                     <button class="" onclick="flatSyleSheet()">Flat Theme</button>
                     <button class="" onclick="style3DSheet()">3D Theme</button>
                     <button class="" onclick="nightSheet()">Night Theme</button>
+                    <hr>
+                    <button class="simulatingInProgress" id="simulatePage" onclick="simulate()">Simulate</button>
                 </div>
             </div>
+        </div>
+
+        <div class="container">
+            <h2 class="" id="simulatingTitle">SIMULATING IN PROGRESS</h2>
         </div>
     
         <div class="container" id="findButtonsContainer">
