@@ -1,12 +1,11 @@
 
+body{ font-family: "Droid Sans", sans-serif; display: flex; flex-direction: column; min-height: 100vh; }
 
-body{ font-family: "Droid Sans", sans-serif;}
-
-.content-wrapper { min-height: 100vh; }
+.content-wrapper { flex-grow: 1; }
 
 .mainContainer{ font-style: oblique; width: 100%; height: auto; padding: 0.1rem 0; text-align: center; display: inline-block; }
 
-h1{ float: left; position: absolute; margin-left: 40%; }
+h1{ float: left; position: absolute; margin-left: 45%; }
 @media screen and (max-width: 700px) { .tankSentry { margin-left: 5%; } }
 
 #simulatingTitle{ font-weight: bolder; display: inline-block; height: auto; margin: auto; padding: 1rem; }
@@ -20,7 +19,7 @@ hr{ height: 10px; }
 
 #simulatePage{ margin-bottom: 10px; }
 
-#footerSection{ margin-top: 2rem; }
+#footerSection { margin: 2rem 0rem; }
 
 textarea{ resize: none; border-width: 15px; width: 70%;}
 
