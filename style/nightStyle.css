@@ -1,85 +1,66 @@
  
 :root {
-  --darkBlue: #23408F;
   --mediumBlue: #0080c4;
-  --lightBlue: #03B6ED;
-  --textHover: #03ff03;
   --textCode: #adff2f;
   --textClick: #fcf401;
-  --submitButton: #328E6E;
   --submitButtonBlack: #1c4d3b;
-  --submitLight: #5ffc7f;
-  --reboot: #ff4949;
   --rebootBlack: #6d2e2e;
-  --rebootLight: #fcb0b0;
   --zs: #383a37;
   --zm: #232564;
   --zr: #27601e;
   --sym23qs: #464646;
   --symU: #9f571c;
-  --zsLight: #ffffff;
-  --zmLight: #7cd8f9;
-  --zrLight: #8afc76;
-  --symULight: #f5d2b4;
   --backDisable: #aaaaaa;
-  --backDisableLight: #969696;
   --colorDisable: #5a5a5a;
   --buttonColor: #414141;
 }
 
-body{background-color: black; font-family: "Droid Sans", sans-serif;}
+body{ background-color: black; }
 
-.content-wrapper { min-height: 100vh; }
+.mainContainer{ background-color: var(--buttonColor); border-radius: 3px; }
 
-.mainContainer{ font-style: oblique; background-color: var(--buttonColor); width: 100%; height: auto; padding: 0.1rem 0; text-align: center; border-radius: 3px; display: inline-block; }
+h1{ color: white; }
 
-h1{ color: white; float: left; position: absolute; margin-left: 40%; }
-@media screen and (max-width: 700px) { .tankSentry { margin-left: 10%; } }
+#simulatingTitle{ background-color: var(--zr); color: white; border-radius: 3px;}
 
-.dropdown { background-color: var(--buttonColor); color: white; font-size: 3rem; border: none; cursor: pointer; }
-.dropdown { float: right; margin-right: 0.5rem;}
-.dropdown-content { display: none; position: absolute; background-color: black; z-index: 1; margin-top: 4.2rem; translate: -10rem; }
-.dropdown-content button { color: white; display: block; background-color: var(--buttonColor); font-size: 1.5rem; width: 13rem; padding: 10px; border-radius: 3px; border-color: transparent;}
-.dropdown-content button:hover {background-color: grey;}
-.dropdown:hover .dropdown-content { display: block; }
+.dropdown { background-color: var(--buttonColor); color: white; border: none; }
+.dropdown-content { background-color: var(--buttonColor); }
+.dropdown-content button { color: white; background-color: var(--buttonColor); border-radius: 3px; border-color: transparent; }
+.dropdown-content button:hover { background-color: grey; }
 .dropdown:hover .dropdown { background-color: grey; }
 
-#footerSection{color: white; margin-top: 2rem;}
+hr{ background-color: grey; border-color: black; }
 
-textarea{ resize: none; background-color: black; color: var(--textCode); border-radius: 5px; border-width: 15px; width: 70%;}
+#footerSection{ color: white; }
 
-.container{display: inline-flexbox; text-align: center; margin-top: 10px; }
+textarea{ background-color: black; color: var(--textCode); border-radius: 5px; }
 
-.butt{ padding: 10px; font-size: 16px; border-radius: 5px; font-weight: bold; margin-top: 5px;  width: 15rem; margin: 3px; color: white; background-color: var(--buttonColor); border-color: transparent;}
-.butt:hover{ box-shadow: 5px 5px 20px black; background-color: grey;}
+.butt{ border-radius: 5px; color: white; background-color: var(--buttonColor); border-color: transparent; }
+.butt:hover{ box-shadow: 5px 5px 20px black; background-color: grey; }
 .butt:active{ box-shadow: 10px 10px 20px black; color: var(--textClick); }
 
 .reboot{ background-color: var(--rebootBlack) }
 
-.select{ width: 6rem; margin-inline: 0.5rem; background-color: var(--mediumBlue);}
-.set{ width: 10rem; margin-inline: 0.5rem;}
-.convert{ width: 20rem; margin-inline: 0.5rem;}
-.yn{background-color: var(--submitButtonBlack) }
+.select{ background-color: var(--mediumBlue); }
 
-.zsSym{ background-color: var(--zs);}
-.zmSym{ background-color: var(--zm);}
-.zrSym{ background-color: var(--zr);}
-.sym23qs{ background-color: var(--sym23qs);}
-.sym23qr{ background-color: var(--sym23qs);}
-.uSym{ background-color: var(--symU);}
+.yn{ background-color: var(--submitButtonBlack) }
 
-#calibrationContainer{font-weight: bold; font-size: 1.3rem; box-sizing: border-box; background-color: var(--buttonColor); border-radius: 5px; width: 100%; align-items: center; margin: auto; margin-top: 1rem; height: auto; padding: 1rem 0rem;}
+.zsSym{ background-color: var(--zs); }
+.zmSym{ background-color: var(--zm); }
+.zrSym{ background-color: var(--zr); }
+.sym23qs{ background-color: var(--sym23qs); }
+.sym23qr{ background-color: var(--sym23qs); }
+.uSym{ background-color: var(--symU); }
 
-@media screen and (max-width: 700px) { .height { display: block; } }
-@media screen and (max-width: 1000px) { .empty { display: block; } }
+#calibrationContainer{ background-color: var(--buttonColor); border-radius: 5px; }
 
-div input, div label{font-size: 1.2rem; color: white; margin: 0.5rem 0rem; padding-inline: 0.5rem; display: inline;}
+div input, div label{ color: white; }
 
-input[type="number"]{ width: 3rem; display: inline-block; background-color: gray; font-weight: bold;}
+input[type="number"]{ background-color: gray; }
 
-input[type="range"]{ width: 70%; display: inline-block; accent-color: grey; }
+input[type="range"]{ accent-color: grey; }
 
-input[type="radio"] { -webkit-appearance: none; -moz-appearance: none; appearance: none; border-radius: 50%; width: 20px; height: 20px; border: 0.15rem solid var(--mediumBlue); transition: 0.5s all linear; background-color: white; vertical-align: middle; }
+input[type="radio"] { -webkit-appearance: none; -moz-appearance: none; appearance: none; transition: 0.5s all linear; border: 0.15rem solid var(--mediumBlue); background-color: white; }
 
 #waterRadioLabel:hover { color: blue; cursor: pointer; }
 #waterRadioLabel { color: blue; }
@@ -90,9 +71,9 @@ input[type="radio"] { -webkit-appearance: none; -moz-appearance: none; appearanc
 #fuelRadioId[type="radio"]:checked { background-color: red; border-color: black;}
 
 
-.submit{background-color: var(--submitButtonBlack); margin-bottom: 1rem; width: 9rem;}
+.submit{ background-color: var(--submitButtonBlack); }
 
-.disable, .disable:hover, .disable:active{ background-color: var(--backDisable); color: var(--colorDisable); box-shadow: 0px 0px 0px black; text-shadow: 0px 0px 0px black; border-color: transparent; font-size: 1rem;}
+.disable, .disable:hover, .disable:active{ background-color: var(--backDisable); color: var(--colorDisable); box-shadow: 0px 0px 0px black; text-shadow: 0px 0px 0px black; border-color: transparent; }
 
 
 
