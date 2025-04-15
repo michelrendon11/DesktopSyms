@@ -1,0 +1,60 @@
+
+
+body{ font-family: "Droid Sans", sans-serif;}
+
+.content-wrapper { min-height: 100vh; }
+
+.mainContainer{ font-style: oblique; width: 100%; height: auto; padding: 0.1rem 0; text-align: center; display: inline-block; }
+
+h1{ float: left; position: absolute; margin-left: 40%; }
+@media screen and (max-width: 700px) { .tankSentry { margin-left: 5%; } }
+
+#simulatingTitle{ font-weight: bolder; display: inline-block; height: auto; margin: auto; padding: 1rem; }
+
+.dropdown { font-size: 3rem; cursor: pointer; float: right; margin-right: 0.5rem; }
+.dropdown-content { display: none; position: absolute; z-index: 1; margin-top: 4.2rem; translate: -10rem; }
+.dropdown-content button { display: block; font-size: 1.5rem; width: 13rem; padding: 10px; }
+.dropdown:hover .dropdown-content { display: block; }
+
+hr{ height: 10px; }
+
+#simulatePage{ margin-bottom: 10px; }
+
+#footerSection{ margin-top: 2rem; }
+
+textarea{ resize: none; border-width: 15px; width: 70%;}
+
+.container{ display: inline-flexbox; text-align: center; margin-top: 10px; }
+
+.butt{ padding: 10px; font-size: 16px; font-weight: bold; margin-top: 5px;  width: 15rem; margin: 3px; }
+
+.select{ width: 6rem; margin-inline: 0.5rem; }
+
+.set{ width: 10rem; margin-inline: 0.5rem; }
+
+.convert{ width: 20rem; margin-inline: 0.5rem; }
+
+#calibrationContainer{ font-weight: bold; font-size: 1.3rem; box-sizing: border-box; width: 100%; align-items: center; margin: auto; margin-top: 1rem; height: auto; padding: 1rem 0rem; }
+
+@media screen and ( max-width: 700px) { .height { display: block; } }
+@media screen and ( max-width: 1000px) { .empty { display: block; } }
+
+div input, div label{ font-size: 1.2rem; margin: 0.5rem 0rem; padding-inline: 0.5rem; display: inline; }
+
+input[type="number"]{ width: 3rem; display: inline-block;}
+
+input[type="range"]{ width: 70%; display: inline-block;}
+
+input[type="radio"] { width: 20px; border-radius: 50%; height: 20px; transition: 0.5s all linear; vertical-align: middle; }
+
+#waterRadioLabel:hover { cursor: pointer; }
+#fuelRadioLabel:hover { cursor: pointer; }
+
+.submit{ margin-bottom: 1rem; width: 9rem;}
+
+.disable, .disable:hover, .disable:active{ font-size: 1rem;}
+
+
+
+
+
