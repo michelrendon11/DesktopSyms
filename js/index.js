@@ -128,6 +128,11 @@ const style3D = document.getElementById("style3D");
 const styleFlat = document.getElementById("styleFlat");
 const nightStyle = document.getElementById("nightStyle");
 
+let simulation = false;
+const simulatePage = document.getElementById("simulatePage");
+const simulatingTitle = document.getElementById("simulatingTitle");
+const simulatingTitleDisplay = simulatingTitle.style.display;
+
 function flatSyleSheet(){
     style3D.disabled = true;
     styleFlat.disabled = false;
@@ -146,6 +151,25 @@ function nightSheet(){
     nightStyle.disabled = false;
 }
 
+function simulate(){
+    if(!simulation){
+        initializeConnection();
+        findButtonsContainer.style.display = "none";
+        textAreaId.innerHTML += "SYM Paired..." + '\n';
+        simulatePage.innerHTML = 'Stop Simulation';
+        simulatePage.style.color = "#f99090";
+        simulatePage.style.fontWeight = "bold";
+        simulatingTitle.style.display = simulatingTitleDisplay;
+
+    }
+    if(simulation){
+        initialize();
+        simulatePage.innerHTML = 'Simulate';
+        simulatePage.style.color = "#ffffff";
+    }
+    return simulation = !simulation;
+}
+
 window.onload = function(){
     initialize();
     console.log(navigator.platform);
@@ -161,7 +185,6 @@ window.onload = function(){
     }
     platformInfo += "<br/>" + navigator.appVersion;
     deviceInfo.innerHTML = platformInfo;
-    testDisplay();
 }
 
 function showSearchButtons(){
@@ -175,8 +198,25 @@ function initialize(){
     ynContainer.style.display = "none";
     olderSymsModelContainer.style.display = "none";
     calibrationSection.style.display = "none";
+    simulatingTitle.style.display = "none";
     findButtonsContainer.style.display = findButtonsContainerDisplay;
     textAreaId.innerHTML = '';
+    scId.disabled = true;
+    scId.classList.add("disable");
+    spId.disabled = true;
+    spId.classList.add("disable");
+    sdId.disabled = true;
+    sdId.classList.add("disable");
+    rebootId.disabled = true;
+    rebootId.classList.add("disable");
+    convertToOlderId.disabled = true;
+    convertToOlderId.classList.add("disable");
+    calibateId.disabled = true;
+    calibateId.classList.add("disable");
+    yId.disabled = true;
+    yId.classList.add("disable");
+    nId.disabled = true;
+    nId.classList.add("disable");
 }
 
 function initializeConnection(){
@@ -234,12 +274,17 @@ async function connectSym(){
 }
 
 async function writeToSym(string){
-    textAreaId.innerHTML += '---- ' + string + ' ----' + '\n\n';
+    textAreaId.innerHTML += '\n\n---- ' + string + ' ----' + '\n';
     textAreaId.scrollTop = textAreaId.scrollHeight;
-    try{
-        await writer.write(sendMessages(string));
-    }catch(error){
-        console.log(error); 
+    if(!simulation){
+        try{
+            await writer.write(sendMessages(string));
+        }catch(error){
+            console.log(error); 
+        }
+    }else{
+        textAreaId.innerHTML += respondToSimulation(string);
+        textAreaId.scrollTop = textAreaId.scrollHeight;
     }
 }
 
@@ -363,6 +408,101 @@ function submitCalibration(){
 }
 
 async function delay(ms){ return new Promise(resolve => setTimeout(resolve, ms)); }
+
+function respondToSimulation(string){
+    let responce = "";
+    switch(string){
+        case 'hh': responce = `
+Connected...
+
+HELLO
+SYM U
+Serial# 103780
+
+Please choose an inquire:
+For SYM info: . . . . . <sc>
+To purge SYM: . . . . <sp>
+Put SYM on HOLD:  <sh>
+For SYM readings: . <sd>
+To calibrate: . . . . . . <C,>
+To Replace old SYM:
+<ZS>  <ZM>  <ZR>
+<23QS>  <23QR> 
+SYM U Ori
+ginal  <ZU>
+To finish . . . . . . . . . <SR>`;
+        break;
+        case '<SC>': responce = `
+
+SYM ZS
+P range:  (0 - 32) in H2O)
+V output: (0.50 - 4.10) VDC)
+Firmware Version: 2.01
+Production Date: 05/08/2024 
+
+DONE 
+
+More inquires ? 
+
+Send 'Y' or 'N'`;
+        break;
+        case '<SD>': responce = `
+000,9 Inches of Water
+Voltage Ou
+tput = 0.4 VDC
+
+000,9 Inches of Water
+Voltage Output = 0.4 VDC
+
+000,9 Inches of Water
+Voltage Output = 0.4 VDC
+
+More Data ? 
+
+Send 'Y' or 'N' `;
+        break;
+        case 'Y': responce = `
+Please choose an inquire:
+For SYM info: . . . . . <sc>
+To purge SYM: . . . . <sp>
+Put SYM on HOLD:  <sh>
+For SYM readings: . <sd>
+To calibrate: . . . . . . <C,>
+To Replace old SYM:
+<ZS>  <ZM>  <ZR>
+<23QS>  <23QR> 
+SYM U Original  <ZU>
+To finish . . . . . . . . . <SR>`;
+        break;
+        case "<SP>": responce = `
+
+"PUMP RUNS/n FOR 5 seconds" 
+
+DONE 
+
+More inquires ? 
+
+Send 'Y' or 'N'`;
+        break;
+        case "<SR>": responce = `
+
+DONE... 
+
+REBOOTING... 
+Do not remove Power 
+from the SYM `;
+        break;
+        case "N": responce = `
+DONE 
+
+More inquires ? 
+
+Send 'Y' or 'N'`;
+        break;
+        default: responce = '';
+    }
+    return responce;
+}
 
 function testDisplay(){
     textAreaId.innerHTML =
