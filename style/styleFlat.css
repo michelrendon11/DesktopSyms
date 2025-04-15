@@ -1,95 +1,76 @@
 
 :root {
-  --darkBlue: #23408F;
-  --mediumBlue: #0080c4;
-  --lightBlue: #03B6ED;
+  --darkBlue2: #23408F;
+  --mediumBlue2: #0080c4;
+  --lightBlue2: #03B6ED;
   --textHover: #03ff03;
   --textCode: #adff2f;
   --textClick: #fcf401;
   --submitButton: #328E6E;
-  --submitLight: #5ffc7f;
   --reboot: #ff4949;
-  --rebootLight: #fcb0b0;
   --zs: #040d00;
   --zm: #060ee2;
   --zr: #0f6000;
   --sym23qs: #464646;
   --symU: #f58121;
-  --zsLight: #ffffff;
-  --zmLight: #7cd8f9;
-  --zrLight: #8afc76;
-  --symULight: #f5d2b4;
   --backDisable: #aaaaaa;
-  --backDisableLight: #969696;
   --colorDisable: #5a5a5a;
 }
 
-body{background-color: white; font-family: "Droid Sans", sans-serif;}
+body{ background-color: white; }
 
-.content-wrapper { min-height: 100vh; }
+.mainContainer{ background-color: var(--darkBlue2); border-radius: 3px; }
 
-.mainContainer{ font-style: oblique; background-color: var(--darkBlue); width: 100%; height: auto; padding: 0.1rem 0; text-align: center; border-radius: 3px; display: inline-block; }
+h1{ color: white; }
 
-h1{ color: white; float: left; position: absolute; margin-left: 40%; }
-@media screen and (max-width: 700px) { .tankSentry { margin-left: 10%; } }
+#simulatingTitle{ background-color: rgb(0, 255, 0); color: rgb(0, 11, 50); border-radius: 3px;}
 
-.dropdown { background-color: var(--darkBlue); color: white; font-size: 3rem; border: none; cursor: pointer; }
-.dropdown { float: right; margin-right: 0.5rem;}
-.dropdown-content { display: none; position: absolute; background-color: var(--darkBlue); z-index: 1; margin-top: 4.2rem; translate: -10rem; }
-.dropdown-content button { color: white; display: block; background-color: var(--darkBlue); font-size: 1.5rem; width: 13rem; padding: 10px; border-radius: 3px; border-color: transparent;}
-.dropdown-content button:hover {background-color: var(--lightBlue);}
-.dropdown:hover .dropdown-content { display: block; }
-.dropdown:hover .dropdown { background-color: var(--mediumBlue); }
 
-#footerSection{color: white; margin-top: 2rem;}
+.dropdown { background-color: var(--darkBlue2); color: white; border: none; }
+.dropdown-content { background-color: var(--darkBlue2); }
+.dropdown-content button { color: white; background-color: var(--darkBlue2); border-radius: 3px; border-color: transparent; }
+.dropdown-content button:hover { background-color: var(--lightBlue2); }
+.dropdown:hover .dropdown { background-color: var(--mediumBlue2); }
 
-textarea{ resize: none; background-color: black; color: var(--textCode); border-radius: 5px; border-width: 15px; width: 70%;}
+hr{ background-color: var(--mediumBlue2); border-color: black; }
 
-.container{display: inline-flexbox; text-align: center; margin-top: 10px; }
+#footerSection{ color: white; }
 
-.butt{ padding: 10px; font-size: 16px; border-radius: 5px; font-weight: bold; margin-top: 5px;  width: 15rem; margin: 3px; color: white; background-color: var(--mediumBlue); border-color: transparent;}
+textarea{ background-color: black; color: var(--textCode); border-radius: 5px; }
+
+.butt{ border-radius: 5px; color: white; background-color: var(--mediumBlue2); border-color: transparent; }
 .butt:hover{ box-shadow: 5px 5px 20px black; color: var(--textHover); }
 .butt:active{ box-shadow: 10px 10px 20px black; color: var(--textClick); }
 
 .reboot{ background-color: var(--reboot) }
 
-.select{ width: 6rem; margin-inline: 0.5rem; background-color: var(--mediumBlue);}
-.set{ width: 10rem; margin-inline: 0.5rem;}
-.convert{ width: 20rem; margin-inline: 0.5rem;}
-.yn{background-color: var(--submitButton) }
+.select{ background-color: var(--mediumBlue2); }
 
-.zsSym{ background-color: var(--zs);}
-.zmSym{ background-color: var(--zm);}
-.zrSym{ background-color: var(--zr);}
-.sym23qs{ background-color: var(--sym23qs);}
-.sym23qr{ background-color: var(--sym23qs);}
-.uSym{ background-color: var(--symU);}
+.yn{ background-color: var(--submitButton) }
 
-#calibrationContainer{font-weight: bold; font-size: 1.3rem; box-sizing: border-box; background-color: var(--lightBlue); border-radius: 5px; border: 0.1rem solid var(--darkBlue); width: 100%; align-items: center; margin: auto; margin-top: 1rem; height: auto; padding: 1rem 0rem;}
+.zsSym{ background-color: var(--zs); }
+.zmSym{ background-color: var(--zm); }
+.zrSym{ background-color: var(--zr); }
+.sym23qs{ background-color: var(--sym23qs); }
+.sym23qr{ background-color: var(--sym23qs); }
+.uSym{ background-color: var(--symU); }
 
-@media screen and (max-width: 700px) { .height { display: block; } }
-@media screen and (max-width: 1000px) { .empty { display: block; } }
+#calibrationContainer{ background-color: var(--lightBlue2); border-radius: 5px; border: 0.1rem solid var(--darkBlue2); }
 
-div input, div label{font-size: 1.2rem; color: black; margin: 0.5rem 0rem; padding-inline: 0.5rem; display: inline;}
+div input, div label{ color: black; }
 
-input[type="number"]{ width: 3rem; display: inline-block;}
-
-input[type="range"]{ width: 70%; display: inline-block;}
-
-input[type="radio"] { -webkit-appearance: none; -moz-appearance: none; appearance: none; border-radius: 50%; width: 20px; height: 20px; border: 0.15rem solid var(--mediumBlue); transition: 0.5s all linear; background-color: white; vertical-align: middle; }
-
-#waterRadioLabel:hover { color: var(--darkBlue); cursor: pointer; }
-#waterRadioLabel { color: var(--darkBlue); }
-#fuelRadioLabel:hover { color: red; cursor: pointer; }
+#waterRadioLabel:hover { color: var(--darkBlue2); }
+#waterRadioLabel { color: var(--darkBlue2); }
+#fuelRadioLabel:hover { color: red; }
 #fuelRadioLabel { color: red; }
 
-#waterRadioId[type="radio"]:checked { background-color: var(--darkBlue); border-color: black;}
+#waterRadioId[type="radio"]:checked { background-color: var(--darkBlue2); border-color: black;}
 #fuelRadioId[type="radio"]:checked { background-color: red; border-color: black;}
 
+.submit{ background-color: var(--submitButton); }
 
-.submit{background-color: var(--submitButton); margin-bottom: 1rem; width: 9rem;}
+.disable, .disable:hover, .disable:active{ background-color: var(--backDisable); color: var(--colorDisable); box-shadow: 0px 0px 0px black; text-shadow: 0px 0px 0px black; border-color: transparent; }
 
-.disable, .disable:hover, .disable:active{ background-color: var(--backDisable); color: var(--colorDisable); box-shadow: 0px 0px 0px black; text-shadow: 0px 0px 0px black; border-color: transparent; font-size: 1rem;}
 
 
 
