@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style/style3D.css" id="style3D" disabled>
-    <link rel="stylesheet" href="style/nightStyle.css" id="nightStyle" disabled>
-    <link rel="stylesheet" href="style/styleFlat.css" id="styleFlat" >
-    <link rel="stylesheet" href="style/Style.css" id="Style">
+    <link rel="stylesheet" href="style/styleNigth.css" id="styleNight" disabled>
+    <link rel="stylesheet" href="style/styleDay.css" id="styleDay">
+    <link rel="stylesheet" href="style/Style.css" id="style">
     <title>Tank Sentry</title>
 </head>
 <body>
@@ -16,9 +16,9 @@
             <div class="dropdown">
                 <button class="dropdown">&#10247;</button>
                 <div class="dropdown-content">
-                    <button class="" onclick="flatSyleSheet()">Flat Theme</button>
-                    <button class="" onclick="style3DSheet()">3D Theme</button>
+                    <button class="" onclick="daySheet()">Day Theme</button>
                     <button class="" onclick="nightSheet()">Night Theme</button>
+                    <button class="" onclick="style3DSheet()">3D Theme</button>
                     <hr>
                     <button class="simulatingInProgress" id="simulatePage" onclick="simulate()">Simulate</button>
                 </div>
@@ -26,7 +26,11 @@
         </div>
 
         <div class="container">
-            <h2 class="" id="simulatingTitle">SIMULATING IN PROGRESS</h2>
+            <img src="logo1.png" alt="Headhunter Logo">
+        </div>
+
+        <div class="container">
+            <h2 class="" id="simulatingTitle">SIMULATION RUNNING</h2>
         </div>
     
         <div class="container" id="findButtonsContainer">
@@ -43,6 +47,7 @@
             <button type="button" class="butt set disable" id="hhId" onclick="hh()">Connect/hh</button>
             <button type="button" class="butt set disable" id="scId" onclick="sc()" disabled>Settings &ltSC&gt</button>
             <button type="button" class="butt set disable" id="spId" onclick="sp()" disabled>Purge &ltSP&gt</button>
+            <button type="button" class="butt set disable" id="shId" onclick="sh()" disabled>Hold &ltSH&gt</button>
             <button type="button" class="butt set disable" id="sdId" onclick="sd()" disabled>Data &ltSD&gt</button>
             <button type="button" class="butt set reboot disable" id="rebootId" onclick="reboot()" disabled>Reboot &ltSR&gt</button>
         </div>
@@ -53,8 +58,8 @@
         </div>
 
         <div class="container" id="ynContainer">
-            <button type="button" class="butt select yn disable" id="yId" onclick="y()" disabled>Yes &ltY&gt</button>
-            <button type="button" class="butt select yn disable" id="nId" onclick="n()" disabled>No &ltN&gt</button>
+            <button type="button" class="butt select yn" id="yId" onclick="y()">Yes &ltY&gt</button>
+            <button type="button" class="butt select yn" id="nId" onclick="n()">No &ltN&gt</button>
         </div>
 
         <div class="container" id="olderSymsModelContainer">
@@ -69,19 +74,17 @@
         <section class="container" id="calibrationSection">
             <div class="container" id="calibrationContainer">
                 <div class="container height">
-                    <form>
+                    <form oninput="heigthOutput.value = heigthRangeId.value">
                         <label for="heigthRangeId">Tank Heigth</label>
-                        <label for="heigthNumberId"></label>
-                        <input type="number" id="heigthNumberId" name="heightNumberName" class="" value="32" min="9" max="80" required oninput="this.form.heigthRangeId.value=this.value">
-                        <input type="range" id="heigthRangeId" name="heigthRangeName" min="9" max="80" value="32" oninput="this.form.heigthNumberId.value = this.value">
+                        <output name= "heigthOutput" for="heigthRangeName" >32</output>
+                        <input type="range" id="heigthRangeId" name="heigthRangeName" min="9" max="80" value="32" >
                     </form>
                 </div>
                 <div class="container empty">
-                    <form>
+                    <form oninput="emptyOutput.value = emptyRangeId.value">
                         <label for="emptyRangeId">Empty Point</label>
-                        <label for="emptyNumberId"></label>
-                        <input type="number" id="emptyNumberId" name="emptyNumberName" class="" value="0" min="0" max="15" required oninput="this.form.emptyRangeId.value=this.value">
-                        <input type="range" id="emptyRangeId" name="emptyRangeName" min="0" max="15" value="0" oninput="this.form.emptyNumberId.value=this.value">
+                        <output name= "emptyOutput" for="emptyRangeName" >0</output>
+                        <input type="range" id="emptyRangeId" name="emptyRangeName" min="0" max="15" value="0">
                     </form>
                 </div>
                 <div class="container radios">
