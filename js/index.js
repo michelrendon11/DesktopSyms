@@ -40,6 +40,9 @@ const scIdDisplay = scId.style.display;
 const spId = document.getElementById("spId");
 const spIdDisplay = spId.style.display;
 
+const shId = document.getElementById("shId");
+const shIdDisplay = shId.style.display;
+
 const sdId = document.getElementById("sdId");
 const sdIdDisplay = sdId.style.display;
 
@@ -91,14 +94,8 @@ const calibrationSectionDisplay = calibrationSection.style.display;
 const calibrationContainer = document.getElementById("calibrationContainer");
 const calibrationContainerDisplay = calibrationContainer.style.display;
 
-const heigthNumberId = document.getElementById("heigthNumberId");
-const heigthNumberIdDisplay = heigthNumberId.style.display;
-
 const heigthRangeId = document.getElementById("heigthRangeId");
 const heigthRangeIdDisplay = heigthRangeId.style.display;
-
-const emptyNumberId = document.getElementById("emptyNumberId");
-const emptyNumberIdDisplay = emptyNumberId.style.display;
 
 const emptyRangeId = document.getElementById("emptyRangeId");
 const emptyRangeIdDisplay = emptyRangeId.style.display;
@@ -125,30 +122,42 @@ const deviceInfo = document.getElementById("deviceInfo");
 const deviceInfoDisplay = deviceInfo.style.display;
 
 const style3D = document.getElementById("style3D");
-const styleFlat = document.getElementById("styleFlat");
-const nightStyle = document.getElementById("nightStyle");
+const styleDay = document.getElementById("styleDay");
+const styleNight = document.getElementById("styleNight");
 
 let simulation = false;
 const simulatePage = document.getElementById("simulatePage");
 const simulatingTitle = document.getElementById("simulatingTitle");
 const simulatingTitleDisplay = simulatingTitle.style.display;
 
-function flatSyleSheet(){
+let data = false;
+
+function daySheet(){
     style3D.disabled = true;
-    styleFlat.disabled = false;
-    nightStyle.disabled = true;
+    styleDay.disabled = false;
+    styleNight.disabled = true;
+    styleNone.disabled = true;
 }
 
 function style3DSheet(){
     style3D.disabled = false;
-    styleFlat.disabled = true;
-    nightStyle.disabled = true;
+    styleDay.disabled = true;
+    styleNight.disabled = true;
+    styleNone.disabled = true;
 }
 
 function nightSheet(){
     style3D.disabled = true;
-    styleFlat.disabled = true;
-    nightStyle.disabled = false;
+    styleDay.disabled = true;
+    styleNight.disabled = false;
+    styleNone.disabled = true;
+}
+
+function noneSheet(){
+    style3D.disabled = true;
+    styleDay.disabled = true;
+    styleNight.disabled = true;
+    styleNone.disabled = false;
 }
 
 function simulate(){
@@ -157,17 +166,55 @@ function simulate(){
         findButtonsContainer.style.display = "none";
         textAreaId.innerHTML += "SYM Paired..." + '\n';
         simulatePage.innerHTML = 'Stop Simulation';
-        simulatePage.style.color = "#f99090";
         simulatePage.style.fontWeight = "bold";
+        simulatePage.style.color = "#f99090";
         simulatingTitle.style.display = simulatingTitleDisplay;
-
     }
     if(simulation){
         initialize();
         simulatePage.innerHTML = 'Simulate';
-        simulatePage.style.color = "#ffffff";
+        simulatePage.style.color = "white";
     }
     return simulation = !simulation;
+}
+
+function simulationInProgress(string){
+    if(string.includes('<SD>')){
+        data = true;
+        textAreaId.innerHTML += respondToSimulation('<SD>');
+        textAreaId.scrollTop = textAreaId.scrollHeight;
+    }if(data){
+        mainButtonsContainer.style.display = "none";
+        convertContainer.style.display = "none";
+        ynContainer.style.display = ynContainerDisplay;
+        if(string == 'Y'){
+            textAreaId.innerHTML += respondToSimulation('<SD>');
+            textAreaId.scrollTop = textAreaId.scrollHeight;
+        }
+        if(string == 'N'){
+            data = false;
+            textAreaId.innerHTML += respondToSimulation('N');
+            textAreaId.scrollTop = textAreaId.scrollHeight;
+        }
+    }else{
+        textAreaId.innerHTML += respondToSimulation(string);
+        textAreaId.scrollTop = textAreaId.scrollHeight;
+        if(string.includes('<SC>') || string.includes('<SP>')){
+            mainButtonsContainer.style.display = "none";
+            convertContainer.style.display = "none";
+            ynContainer.style.display = ynContainerDisplay;
+        }else if(string == 'Y'){
+            mainButtonsContainer.style.display = mainButtonsContainerDisplay;
+            convertContainer.style.display = convertContainerDisplay;
+            ynContainer.style.display = "none";
+        }else if(string == 'N'){
+            mainButtonsContainer.style.display = mainButtonsContainerDisplay;
+            convertContainer.style.display = convertContainerDisplay;
+            ynContainer.style.display = "none";
+            textAreaId.innerHTML += respondToSimulation('<SR>');
+            textAreaId.scrollTop = textAreaId.scrollHeight;
+        }
+    }
 }
 
 window.onload = function(){
@@ -207,23 +254,20 @@ function initialize(){
     spId.classList.add("disable");
     sdId.disabled = true;
     sdId.classList.add("disable");
+    shId.disabled = true;
+    shId.classList.add("disable");
     rebootId.disabled = true;
     rebootId.classList.add("disable");
     convertToOlderId.disabled = true;
     convertToOlderId.classList.add("disable");
     calibateId.disabled = true;
     calibateId.classList.add("disable");
-    yId.disabled = true;
-    yId.classList.add("disable");
-    nId.disabled = true;
-    nId.classList.add("disable");
 }
 
 function initializeConnection(){
     textAreaContainer.style.display = textAreaContainerDisplay;
     mainButtonsContainer.style.display = mainButtonsContainerDisplay;
     convertContainer.style.display = convertContainerDisplay;
-    ynContainer.style.display = ynContainerDisplay;
     hhId.disabled = false;
     hhId.classList.remove("disable");
 }
@@ -236,6 +280,8 @@ function enableButtons(){
     spId.classList.remove("disable");
     sdId.disabled = false;
     sdId.classList.remove("disable");
+    shId.disabled = false;
+    shId.classList.remove("disable");
     rebootId.disabled = false;
     rebootId.classList.remove("disable");
     convertToOlderId.disabled = false;
@@ -283,8 +329,7 @@ async function writeToSym(string){
             console.log(error); 
         }
     }else{
-        textAreaId.innerHTML += respondToSimulation(string);
-        textAreaId.scrollTop = textAreaId.scrollHeight;
+        simulationInProgress(string);
     }
 }
 
@@ -327,10 +372,13 @@ function hh() {
     enableButtons();
 }
 function sc(){ 
-    writeToSym('<SC>'); 
+    writeToSym('<SC>');
 }
 function sp(){ 
     writeToSym('<SP>'); 
+}
+function sh(){ 
+    writeToSym('<SH>'); 
 }
 function sd(){ 
     writeToSym('<SD>'); 
@@ -366,8 +414,7 @@ function uSym(){
     convertedSym();
 }
 function reboot(){ 
-    writeToSym('<SR>'); 
-    // initialize();
+    writeToSym('<SR>');
 }
 
 function convertSym(){
@@ -400,8 +447,8 @@ function calibratedSym(){
 }
 
 function submitCalibration(){
-    const heigh = heigthNumberId.value;
-    const empty = emptyNumberId.value;
+    const heigh = heigthRangeId.value;
+    const empty = emptyRangeId.value;
     const liquidType = waterRadioId.checked ? 'W' : 'D';
     writeToSym('<' + heigh + ',' + empty + ',' + liquidType + '>');
     calibratedSym();
@@ -411,8 +458,8 @@ async function delay(ms){ return new Promise(resolve => setTimeout(resolve, ms))
 
 function respondToSimulation(string){
     let responce = "";
-    switch(string){
-        case 'hh': responce = `
+    switch(string.toUpperCase()){
+        case 'HH': responce = `
 Connected...
 
 HELLO
@@ -428,17 +475,16 @@ To calibrate: . . . . . . <C,>
 To Replace old SYM:
 <ZS>  <ZM>  <ZR>
 <23QS>  <23QR> 
-SYM U Ori
-ginal  <ZU>
+SYM U Original  <ZU>
 To finish . . . . . . . . . <SR>`;
         break;
-        case '<SC>': responce = `
 
+        case '<SC>': responce = `
 SYM ZS
 P range:  (0 - 32) in H2O)
 V output: (0.50 - 4.10) VDC)
-Firmware Version: 2.01
-Production Date: 05/08/2024 
+Firmware Version: 3.10
+Production Date: 06/01/2025 
 
 DONE 
 
@@ -446,21 +492,86 @@ More inquires ?
 
 Send 'Y' or 'N'`;
         break;
+
+        case "<SP>": responce = `
+"PUMP RUNS/n FOR 5 seconds" 
+
+DONE 
+
+More inquires ? 
+
+Send 'Y' or 'N'`;
+        break;
+
+        case '<SH>': responce = `
+SYM ON HOLD
+for 10 minutes
+
+Send D to Exit HOLD 
+If you want to exit
+before the 10 minutes
+expired`;
+        break;
+
         case '<SD>': responce = `
-000,9 Inches of Water
-Voltage Ou
-tput = 0.4 VDC
+001,0 Inches of Water
+Voltage Output = 0.7 VDC
 
-000,9 Inches of Water
-Voltage Output = 0.4 VDC
+ 
+ADC pointer = 132
+001,0 In
+ches of Water
+Voltage Output = 0.7 VDC
 
-000,9 Inches of Water
-Voltage Output = 0.4 VDC
+ 
+ADC pointer = 132
+001,0 Inches of Water
+Voltage Output = 0.7 VDC
 
+ 
+ADC pointer = 132
+001,0 Inches of Water
+Voltage Output = 0.7 VDC
+
+ 
+ADC pointer = 132
+001,0 Inches of Water
+Voltage Output = 0.7 VDC
+
+ 
+ADC point
+er = 132
+001,0 Inches of Water
+Voltage Output = 0.7 VDC
+
+ 
+ADC pointer = 132
+001,0 Inches of Water
+Voltage Output = 0.7 VDC
+
+ 
+ADC pointer = 132
+001,0 Inches of Water
+Voltage Output = 0.7 VDC
+
+ 
+ADC pointer = 132
+001,0 Inches of Water
+Voltage Output = 0.7
+ VDC
+
+ 
+ADC pointer = 132
+001,0 Inches of Water
+Voltage Output = 0.7 VDC
+
+ 
+ADC pointer = 132
 More Data ? 
 
-Send 'Y' or 'N' `;
+Send 'Y' or 'N'`;
         break;
+
         case 'Y': responce = `
 Please choose an inquire:
 For SYM info: . . . . . <sc>
@@ -474,24 +585,7 @@ To Replace old SYM:
 SYM U Original  <ZU>
 To finish . . . . . . . . . <SR>`;
         break;
-        case "<SP>": responce = `
 
-"PUMP RUNS/n FOR 5 seconds" 
-
-DONE 
-
-More inquires ? 
-
-Send 'Y' or 'N'`;
-        break;
-        case "<SR>": responce = `
-
-DONE... 
-
-REBOOTING... 
-Do not remove Power 
-from the SYM `;
-        break;
         case "N": responce = `
 DONE 
 
@@ -499,162 +593,19 @@ More inquires ?
 
 Send 'Y' or 'N'`;
         break;
-        default: responce = '';
-    }
-    return responce;
-}
 
-function testDisplay(){
-    textAreaId.innerHTML =
-`Connected...
--->> hh
-HELLO
-SYM U
-Serial# 103780
-
-Please choose an inquire:
-For SYM info: . . . . . <sc>
-To purge SYM: . . . . <sp>
-Put SYM on HOLD:  <sh>
-For SYM readings: . <sd>
-To calibrate: . . . . . . <C,>
-To Replace old SYM:
-<ZS>  <ZM>  <ZR>
-<23QS>  <23QR> 
-SYM U Ori
-ginal  <ZU>
-To finish . . . . . . . . . <SR>
-
--->> <sc>
-SYM ZS
-P range:  (0 - 32) in H2O)
-V output: (0.50 - 4.10) VDC)
-Firmware Version: 2.01
-Production Date: 05/08/2024 
-
-DONE 
-
-More inquires ? 
-
-Send 'Y' or 'N'
-
--->> y
-Please choose an inquire:
-For SYM info: . . . .
-. <sc>
-To purge SYM: . . . . <sp>
-Put SYM on HOLD:  <sh>
-For SYM readings: . <sd>
-To calibrate: . . . . . . <C,>
-To Replace old SYM:
-<ZS>  <ZM>  <ZR>
-<23QS>  <23QR> 
-SYM U Original  <ZU>
-To finish . . . . . . . . . <SR>
-
--->> <sc>
-000,9 Inches of Water
-Voltage Ou
-tput = 0.4 VDC
-
-000,9 Inches of Water
-Voltage Output = 0.4 VDC
-
-000,9 Inches of Water
-Voltage Output = 0.4 VDC
-
-More Data ? 
-
-Sen
-d 'Y' or 'N' 
-
-
--->> n
-
-DONE 
-
-More inquires ? 
-
-Send 'Y' or 'N'
-
--->> y
-Please choose an inquire:
-For SYM info: . . . . . <sc>
-To purge SYM: . . . . <sp>
-Put SYM on HOLD:  <sh>
-For SYM readings: . <sd>
-To calibrate: . . . . . . <C,>
-To Replace old SYM:
-<ZS>  <ZM>  <
-ZR>
-<23QS>  <23QR> 
-SYM U Original  <ZU>
-To finish . . . . 
-. . . . . <SR>
-
--->> <sp>
-PUMP RUNS/n FOR 5 seconds
-
-
-DONE 
-
-More inquires ? 
-
-Send 'Y' or 'N'
-
--->> y
-Please choose an inquire:
-For SYM info: . . . . . <sc>
-To purge SYM: . . . . <sp>
-Put SYM on HOLD:  <sh>
-For S
-YM readings: . <sd>
-To calibrate: . . . . . . <C,>
-To Replace old SYM:
-<ZS>  <ZM>  <ZR>
-<23QS>  <23QR> 
-SYM U Original  <ZU>
-To finish . . . . . . . . . <SR>
-
--->> <zs>
-
-DONE 
-
-More inquires ? 
-
-Send 'Y' or 'N'
-
--->> y
-Please choose an inquire:
-For SYM info: . . . . . <
-sc>
-To purge SYM: . . . . <sp>
-Put SYM on HOLD:  <sh>
-For SYM readings: . <sd>
-To calibrate: . . . . . . <C,>
-To Replace old SYM:
-<ZS>  <ZM>  <ZR>
-<23QS>  <23QR> 
-SYM U Original  <ZU>
-To finish . . . . . . . . . <SR>
-
--->> <sr>
-
-DONE 
-
-More inquires ? 
-
-Send 'Y' 
-or 'N'
+        case '<SR>': responce = `
 
 DONE... 
 
 REBOOTING... 
 Do not remove Power 
-from the SYM 
+from the SYM `;
+        break;
 
-`;
-    textAreaId.scrollTop = textAreaId.scrollHeight;
+        default: responce = '';
+    }
+    return responce;
 }
 
 // ------------------>>>>>>>
