@@ -5,7 +5,9 @@ body{ font-family: "Droid Sans", sans-serif; display: flex; flex-direction: colu
 
 .mainContainer{ font-style: oblique; width: 100%; height: auto; padding: 0.1rem 0; text-align: center; display: inline-block; }
 
-h1{ float: left; position: absolute; margin-left: 45%; }
+img{ position: relative; margin-left: 1rem; display: inline;}
+
+h1{ float: left; margin-left: 41%; position: relative; }
 @media screen and (max-width: 700px) { .tankSentry { margin-left: 5%; } }
 
 #simulatingTitle{ font-weight: bolder; display: inline-block; height: auto; margin: auto; padding: 1rem; }
@@ -19,7 +21,7 @@ hr{ height: 10px; }
 
 #simulatePage{ margin-bottom: 10px; }
 
-#footerSection { margin: 2rem 0rem; }
+#footerSection { margin-top: 2rem; margin-bottom: 0.1rem; }
 
 textarea{ resize: none; border-width: 15px; width: 70%;}
 
@@ -40,11 +42,11 @@ textarea{ resize: none; border-width: 15px; width: 70%;}
 
 div input, div label{ font-size: 1.2rem; margin: 0.5rem 0rem; padding-inline: 0.5rem; display: inline; }
 
-input[type="number"]{ width: 3rem; display: inline-block;}
+output{ font-size: 1.5rem; font-weight: bolder; padding: 0px 7px; }
 
 input[type="range"]{ width: 70%; display: inline-block;}
 
-input[type="radio"] { width: 20px; border-radius: 50%; height: 20px; transition: 0.5s all linear; vertical-align: middle; }
+input[type="radio"] { -webkit-appearance: none; -moz-appearance: none; appearance: none; width: 20px; border-radius: 50%; height: 20px; transition: 0.5s all linear; vertical-align: middle; }
 
 #waterRadioLabel:hover { cursor: pointer; }
 #fuelRadioLabel:hover { cursor: pointer; }
@@ -52,7 +54,6 @@ input[type="radio"] { width: 20px; border-radius: 50%; height: 20px; transition:
 .submit{ margin-bottom: 1rem; width: 9rem;}
 
 .disable, .disable:hover, .disable:active{ font-size: 1rem;}
-
 
 
 
