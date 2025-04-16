@@ -56,11 +56,11 @@ textarea{ background-color: black; color: var(--textCode); border-radius: 5px; }
 
 div input, div label{ color: white; }
 
-input[type="number"]{ background-color: gray; }
+output{ border: 1px solid gray; border-radius: 3px; color: white;}
 
 input[type="range"]{ accent-color: grey; }
 
-input[type="radio"] { -webkit-appearance: none; -moz-appearance: none; appearance: none; transition: 0.5s all linear; border: 0.15rem solid var(--mediumBlue); background-color: white; }
+input[type="radio"] { border: 2px solid black; background-color: white; }
 
 #waterRadioLabel:hover { color: blue; cursor: pointer; }
 #waterRadioLabel { color: blue; }
