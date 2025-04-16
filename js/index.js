@@ -136,28 +136,24 @@ function daySheet(){
     style3D.disabled = true;
     styleDay.disabled = false;
     styleNight.disabled = true;
-    styleNone.disabled = true;
 }
 
 function style3DSheet(){
     style3D.disabled = false;
     styleDay.disabled = true;
     styleNight.disabled = true;
-    styleNone.disabled = true;
 }
 
 function nightSheet(){
     style3D.disabled = true;
     styleDay.disabled = true;
     styleNight.disabled = false;
-    styleNone.disabled = true;
 }
 
 function noneSheet(){
     style3D.disabled = true;
     styleDay.disabled = true;
     styleNight.disabled = true;
-    styleNone.disabled = false;
 }
 
 function simulate(){
