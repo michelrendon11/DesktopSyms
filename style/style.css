@@ -1,11 +1,11 @@
 
-body{ font-family: "Droid Sans", sans-serif; display: flex; flex-direction: column; min-height: 100vh; }
+body{ font-family: "Droid Sans", sans-serif; display: flex; flex-direction: column; min-height: 98vh; }
 
 .content-wrapper { flex-grow: 1; }
 
 .mainContainer{ font-style: oblique; width: 100%; height: auto; padding: 0.1rem 0; text-align: center; display: inline-block; }
 
-img{ position: relative; margin-left: 1rem; display: inline;}
+img{ position: relative; }
 
 h1{ float: left; margin-left: 41%; position: relative; }
 @media screen and (max-width: 700px) { .tankSentry { margin-left: 5%; } }
@@ -23,9 +23,9 @@ hr{ height: 10px; }
 
 #footerSection { margin-top: 2rem; margin-bottom: 0.1rem; }
 
-textarea{ resize: none; border-width: 15px; width: 70%;}
+.container{ text-align: center; margin: 10px 0px 0px 0px; }
 
-.container{ display: inline-flexbox; text-align: center; margin-top: 10px; }
+textarea{ resize: none; border-width: 15px; width: 70%;}
 
 .butt{ padding: 10px; font-size: 16px; font-weight: bold; margin-top: 5px;  width: 15rem; margin: 3px; }
 
@@ -54,7 +54,6 @@ input[type="radio"] { -webkit-appearance: none; -moz-appearance: none; appearanc
 .submit{ margin-bottom: 1rem; width: 9rem;}
 
 .disable, .disable:hover, .disable:active{ font-size: 1rem;}
-
 
 
 
