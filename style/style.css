@@ -1,5 +1,5 @@
 
-body{ font-family: "Droid Sans", sans-serif; display: flex; flex-direction: column; min-height: 98vh; }
+body{ font-family: "Droid Sans", sans-serif; display: flex; flex-direction: column; min-height: 95vh; }
 
 .content-wrapper { flex-grow: 1; }
 
