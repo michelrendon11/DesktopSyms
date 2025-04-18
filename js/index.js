@@ -252,10 +252,57 @@ window.onload = function(){
     }
     platformInfo += "<br/>" + navigator.appVersion;
     deviceInfo.innerHTML = platformInfo;
+    // showAll();
 }
 
 function showSearchButtons(){
     findButtonsContainer.style.display = findButtonsContainerDisplay;
+}
+
+function showAll(){
+    textAreaContainer.style.display = textAreaContainerDisplay;
+    mainButtonsContainer.style.display = mainButtonsContainerDisplay;
+    convertContainer.style.display = convertContainerDisplay;
+    ynContainer.style.display = ynContainerDisplay;
+    olderSymsModelContainer.style.display = olderSymsModelContainerDisplay;
+    calibrationSection.style.display = calibrationSectionDisplay;
+    simulatingTitle.style.display = simulatingTitleDisplay;
+    dID.style.display = dIDDisplay;
+    restartSimulationID.style.display = restartSimulationIDDisplay;
+    hhId.disabled = false;
+    hhId.classList.remove("disable");
+    scId.disabled = false;
+    scId.classList.remove("disable");
+    spId.disabled = false;
+    spId.classList.remove("disable");
+    sdId.disabled = false;
+    sdId.classList.remove("disable");
+    shId.disabled = false;
+    shId.classList.remove("disable");
+    rebootId.disabled = false;
+    rebootId.classList.remove("disable");
+    convertToOlderId.disabled = false;
+    convertToOlderId.classList.remove("disable");
+    calibateId.disabled = false;
+    calibateId.classList.remove("disable");
+    textAreaId.innerHTML = `
+    Connected...
+
+HELLO
+SYM U
+Serial# 103780
+
+Please choose an inquire:
+For SYM info: . . . . . <sc>
+To purge SYM: . . . . <sp>
+Put SYM on HOLD:  <sh>
+For SYM readings: . <sd>
+To calibrate: . . . . . . <C,>
+To Replace old SYM:
+<ZS>  <ZM>  <ZR>
+<23QS>  <23QR> 
+SYM U Original  <ZU>
+To finish . . . . . . . . . <SR>`;
 }
 
 function initialize(){
