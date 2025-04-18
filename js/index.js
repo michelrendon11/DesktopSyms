@@ -115,6 +115,12 @@ const fuelRadioLabelDisplay = fuelRadioLabel.style.display;
 const submitCalibrationId = document.getElementById("submitCalibrationId");
 const submitCalibrationIdDisplay = submitCalibrationId.style.display;
 
+const dID = document.getElementById("dID");
+const dIDDisplay = dID.style.display;
+
+const restartSimulationID = document.getElementById("restartSimulationID");
+const restartSimulationIDDisplay = restartSimulationID.style.display;
+
 const footerSection = document.getElementById("footerSection");
 const footerSectionDisplay = footerSection.style.display;
 
@@ -148,12 +154,6 @@ function nightSheet(){
     style3D.disabled = true;
     styleDay.disabled = true;
     styleNight.disabled = false;
-}
-
-function noneSheet(){
-    style3D.disabled = true;
-    styleDay.disabled = true;
-    styleNight.disabled = true;
 }
 
 function simulate(){
@@ -204,13 +204,37 @@ function simulationInProgress(string){
             convertContainer.style.display = convertContainerDisplay;
             ynContainer.style.display = "none";
         }else if(string == 'N'){
-            mainButtonsContainer.style.display = mainButtonsContainerDisplay;
-            convertContainer.style.display = convertContainerDisplay;
             ynContainer.style.display = "none";
             textAreaId.innerHTML += respondToSimulation('<SR>');
             textAreaId.scrollTop = textAreaId.scrollHeight;
+            showRestart();
+        }else if(string.includes('<SR>')){
+            showRestart();
+        }else if(string.includes('<SH>')){
+            mainButtonsContainer.style.display = "none";
+            convertContainer.style.display = "none";
+            dID.style.display = dIDDisplay;
         }
     }
+}
+
+function d(){
+    dID.style.display = "none";
+    textAreaId.innerHTML += respondToSimulation('<SR>');
+    textAreaId.scrollTop = textAreaId.scrollHeight;
+    showRestart();
+}
+
+function showRestart(){
+    mainButtonsContainer.style.display = "none";
+    convertContainer.style.display = "none";
+    restartSimulationID.style.display = restartSimulationIDDisplay;
+}
+
+function restartSimulation(){
+    initialize();
+    simulation = false;
+    simulate();
 }
 
 window.onload = function(){
@@ -242,6 +266,8 @@ function initialize(){
     olderSymsModelContainer.style.display = "none";
     calibrationSection.style.display = "none";
     simulatingTitle.style.display = "none";
+    dID.style.display = "none";
+    restartSimulationID.style.display = "none";
     findButtonsContainer.style.display = findButtonsContainerDisplay;
     textAreaId.innerHTML = '';
     scId.disabled = true;
@@ -344,7 +370,7 @@ async function readFromSym(){
         while (true) {
             const { value, done } = await reader.read();
             if (value) {
-                console.log(value + '\n');
+                console.log(value + '\n'); 
                 textAreaId.innerHTML += value + '\n';
                 textAreaId.scrollTop = textAreaId.scrollHeight;
             }
@@ -418,11 +444,12 @@ function convertSym(){
     ynContainer.style.display = "none";
     convertContainer.style.display = "none";
     olderSymsModelContainer.style.display = olderSymsModelContainerDisplay;
+    calibateId.disabled = true;
+    calibateId.classList.add("disable");
 }
 
 function convertedSym(){
     mainButtonsContainer.style.display = mainButtonsContainerDisplay;
-    ynContainer.style.display = ynContainerDisplay;
     convertContainer.style.display = convertContainerDisplay;
     olderSymsModelContainer.style.display = "none";
 }
@@ -438,8 +465,9 @@ function calibrationSelectionSection(){
 function calibratedSym(){
     calibrationSection.style.display = "none";
     mainButtonsContainer.style.display = mainButtonsContainerDisplay;
-    ynContainer.style.display = ynContainerDisplay;
     convertContainer.style.display = convertContainerDisplay;
+    convertToOlderId.disabled = true;
+    convertToOlderId.classList.add("disable");
 }
 
 function submitCalibration(){
@@ -616,3 +644,21 @@ async function seeEverything(){
     }
 }
 
+
+
+
+{/* <script>
+const textarea = document.getElementById("myTextarea");
+const text = "This is the text that will be typed out.";
+let index = 0;
+let speed = 50; // Adjust typing speed (milliseconds)
+
+function typeWriter() {
+  if (index < text.length) {
+    textarea.value += text.charAt(index);
+    index++;
+    setTimeout(typeWriter, speed);
+  }
+}
+typeWriter();
+</script> */}
