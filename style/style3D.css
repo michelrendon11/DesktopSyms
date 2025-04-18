@@ -27,27 +27,27 @@
 
 body{ background-color: white; }
 
-.mainContainer{ background-color: var(--darkBlue2); border-radius: 10px; box-shadow: 0px 2px 5px black; }
+.mainContainer{ background-color: var(--darkBlue2); border-radius: 0.5rem; box-shadow: 0rem 0.1rem 0.4rem black; }
 
-h1{ color: white; text-shadow: 3px 2px 2px black; }
+h1{ color: white; text-shadow: 0.2rem 0.1rem 0.1rem black; }
 
-#simulatingTitle{ background-color: rgb(0, 255, 0); color: rgb(0, 11, 50); border-radius: 10px; box-shadow: 0px 2px 5px black; text-shadow: 3px 2px 2px rgb(125, 248, 125); }
+#simulatingTitle{ background-color: rgb(0, 255, 0); color: rgb(0, 11, 50); border-radius: 0.5rem; box-shadow: 0rem 0.1rem 0.4rem black; text-shadow: 0.2rem 0.1rem 0.1rem rgb(125, 248, 125); }
 
 .dropdown { background-color: var(--darkBlue2); color: white; border: none; }
 .dropdown-content { background-color: var(--darkBlue2); }
-.dropdown-content button { color: white; background-color: var(--darkBlue2); border-radius: 3px; border-color: transparent; }
+.dropdown-content button { color: white; background-color: var(--darkBlue2); border-radius: 0.5rem; border-color: transparent; }
 .dropdown-content button:hover { background-image: linear-gradient(var(--mediumBlue2) 70%, var(--lightBlue2)); }
 .dropdown:hover .dropdown { background-image: linear-gradient(var(--mediumBlue2) 70%, var(--lightBlue2)); }
 
-hr{ background-color: var(--mediumBlue2); border-color: black; box-shadow: 0px 1px 3px black; width: 96%; }
+hr{ background-color: var(--mediumBlue2); border-color: black; box-shadow: 0rem 0.1rem 0.4rem black; width: 96%; }
 
 #footerSection{ color: white; }
 
-textarea{ background-color: black; color: var(--textCode); border-radius: 10px; box-shadow: 0px 2px 5px black; }
+textarea{ background-color: black; color: var(--textCode); border-radius: 0.5rem; box-shadow: 0rem 0.1rem 0.4rem black; }
 
-.butt{ border-radius: 10px; color: white; text-shadow: 2px 2px 2px var(--darkBlue2); background-image: linear-gradient(var(--mediumBlue2) 70%, var(--lightBlue2)); }
-.butt:hover{ box-shadow: 5px 5px 20px black; color: var(--textHover); }
-.butt:active{ box-shadow: 10px 10px 20px black; color: var(--textClick); }
+.butt{ border-radius: 0.5rem; color: white; text-shadow: 0.1rem 0.1rem 0.1rem var(--darkBlue2); background-image: linear-gradient(var(--mediumBlue2) 70%, var(--lightBlue2)); }
+.butt:hover{ box-shadow: 0.4rem 0.4rem 1.3rem black; color: var(--textHover); }
+.butt:active{ box-shadow: 0.4rem 0.4rem 1.3rem black; color: var(--textClick); }
 
 .reboot{ background-image: linear-gradient( var(--reboot) 60%, var(--rebootLight)); }
 
@@ -62,15 +62,15 @@ textarea{ background-color: black; color: var(--textCode); border-radius: 10px; 
 .sym23qr{ background-image: linear-gradient( var(--sym23qs) 60%, var(--zsLight)); }
 .uSym{ background-image: linear-gradient( var(--symU) 60%, var(--symULight)); }
 
-#calibrationContainer{ background-color: var(--lightBlue2); border-radius: 10px; border: 0.1rem solid var(--darkBlue2); }
+#calibrationContainer{ background-color: var(--lightBlue2); border-radius: 0.5rem; border: 0.1rem solid var(--darkBlue2); }
 
 div input, div label{ color: black; }
 
-output{ border: 1px solid black; box-shadow: 0px 2px 5px black; border-radius: 5px; }
+output{ border: 0.1rem solid black; box-shadow: 0rem 0.1rem 0.4rem black; border-radius: 0.3rem; }
 
-input[type="range"]{ box-shadow: 5px 2px 5px var(--rangeBlue); }
+input[type="range"]{ box-shadow: 0.3rem 0.1rem 0.3rem var(--rangeBlue); }
 
-input[type="radio"] { border: 2px solid var(--darkBlue2); background-color: white; }
+input[type="radio"] { border: 0.1rem solid var(--darkBlue2); background-color: white; }
 
 #waterRadioLabel:hover { color: var(--darkBlue2); }
 #waterRadioLabel { color: var(--darkBlue2); }
@@ -82,8 +82,7 @@ input[type="radio"] { border: 2px solid var(--darkBlue2); background-color: whit
 
 .submit, #dID, #restartSimulationID{ background-image: linear-gradient( var(--submitButton) 60%, var(--submitLight)); }
 
-.disable, .disable:hover, .disable:active{ background-image: linear-gradient( var(--backDisable), var(--backDisableLight)); color: var(--colorDisable); box-shadow: 0px 0px 0px black; text-shadow: 0px 0px 0px black; border-color: transparent; }
-
+.disable, .disable:hover, .disable:active{ background-image: linear-gradient( var(--backDisable), var(--backDisableLight)); color: var(--colorDisable); box-shadow: 0rem 0rem 0rem black; text-shadow: 0rem 0rem 0rem black; border-color: transparent; }
 
 
 
