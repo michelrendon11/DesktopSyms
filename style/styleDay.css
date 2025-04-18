@@ -15,6 +15,7 @@
   --symU: #f58121;
   --backDisable: #aaaaaa;
   --colorDisable: #5a5a5a;
+  --restart: rgb(225, 225, 3);
 }
 
 body{ background-color: white; }
@@ -23,7 +24,7 @@ body{ background-color: white; }
 
 h1{ color: white; }
 
-#simulatingTitle{ background-color: rgb(0, 255, 0); color: rgb(0, 11, 50); border-radius: 3px;}
+#simulatingTitle{ background-color: rgb(0, 255, 0); color: black; border-radius: 3px; border: 5px solid rgb(170, 251, 176);}
 
 
 .dropdown { background-color: var(--darkBlue2); color: white; border: none; }
@@ -72,6 +73,10 @@ input[type="radio"] { border: 2px solid black; background-color: white; }
 #fuelRadioId[type="radio"]:checked { background-color: red; border-color: black;}
 
 .submit{ background-color: var(--submitButton); }
+
+#dID{ background-color: var(--mediumBlue2); color: white; font-weight: bold; font-size: 20px; }
+
+#restartSimulationID{ background-color: var(--submitButton); color: white; font-weight: bold; font-size: 20px; }
 
 .disable, .disable:hover, .disable:active{ background-color: var(--backDisable); color: var(--colorDisable); box-shadow: 0px 0px 0px black; text-shadow: 0px 0px 0px black; border-color: transparent; }
 
