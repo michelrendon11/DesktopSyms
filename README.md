@@ -8,3 +8,7 @@ I postpone the project until I master virtual servers, or Chrome adds support fo
 
 The page has "Simulate" and "Show All" buttons, just to have a peek of what the page will do once fully functional.
 
+The page is available at:
+
+https://michelrendon11.github.io/DesktopSyms/
+
