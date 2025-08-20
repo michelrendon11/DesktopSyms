@@ -679,9 +679,6 @@ from the SYM `;
     return responce;
 }
 
-// ------------------>>>>>>>
-// ------------------>>>>>>>
-// ------------------>>>>>>>
 
 async function seeEverything(){
     try{
@@ -694,18 +691,4 @@ async function seeEverything(){
 
 
 
-{/* <script>
-const textarea = document.getElementById("myTextarea");
-const text = "This is the text that will be typed out.";
-let index = 0;
-let speed = 50; // Adjust typing speed (milliseconds)
 
-function typeWriter() {
-  if (index < text.length) {
-    textarea.value += text.charAt(index);
-    index++;
-    setTimeout(typeWriter, speed);
-  }
-}
-typeWriter();
-</script> */}
