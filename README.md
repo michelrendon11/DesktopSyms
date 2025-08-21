@@ -1,4 +1,4 @@
-### Bluetooth Communication Using Serial Port
+#### Bluetooth Communication Using Serial Port
 
 The company I work for has sensors with Bluetooth capabilities
 
