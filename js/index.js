@@ -1,18 +1,12 @@
 
-
+//------------------------------------------------------------------------------------------------------->>>>>>
+//Initilize Sensor Communication Global Variables
 let port = null;
 let reader = null;
 let writer = null;
-let symResponce = "";
-let serialMatch = "";
-let dateMatch = "";
-let decimalMatch = "";
-let currentSettingsMatch = "";
-let levelRageMatch = "";
-let currentLevel = "";
-let screenMessage = "";
-let settingsMessage = "";
 
+//---------------------------------------------------------------------------------------------------------------->>>>
+//Initialize buttons and conteiners display style
 const findButtonsContainer = document.getElementById("findButtonsContainer");
 const findButtonsContainerDisplay = findButtonsContainer.style.display;
 
@@ -131,31 +125,155 @@ const style3D = document.getElementById("style3D");
 const styleDay = document.getElementById("styleDay");
 const styleNight = document.getElementById("styleNight");
 
-let simulation = false;
 const simulatePage = document.getElementById("simulatePage");
 const simulatingTitle = document.getElementById("simulatingTitle");
 const simulatingTitleDisplay = simulatingTitle.style.display;
 
-let data = false;
 
+//--------------------------------------------------------------------------------------------->>>>>>>
+let simulation = false; //Boolean for Simulation running Loop
+let data = false; //Boolean for requesting more Data from Sensor
+
+//-------------------------------------------------------------------------------------------->>>>>>>>>
+//Setup Page Views Style Sheets
 function daySheet(){
     style3D.disabled = true;
     styleDay.disabled = false;
     styleNight.disabled = true;
 }
-
 function style3DSheet(){
     style3D.disabled = false;
     styleDay.disabled = true;
     styleNight.disabled = true;
 }
-
 function nightSheet(){
     style3D.disabled = true;
     styleDay.disabled = true;
     styleNight.disabled = false;
 }
 
+//----------------------------------------------------------------------------------------------------->>>>>
+//The first time the page loads
+window.onload = function(){
+    initialize();
+    console.log(navigator.platform);
+    console.log(navigator.appVersion);
+    console.log(window.navigator.userAgent);
+    console.log(navigator.userAgentData.brands);
+    const br = navigator.userAgentData.brands;
+    let platformInfo = navigator.platform + "<br/>";
+    for(let i = 0; i < br.length; i++){
+        if((br[i].brand).includes("Not")){ continue; }
+        console.log(br[i].brand + ": " + br[i].version);
+        platformInfo += br[i].brand + ": " + br[i].version + "<br/>"
+    }
+    platformInfo += "<br/>" + navigator.appVersion;
+    deviceInfo.innerHTML = platformInfo;
+}
+
+//------------------------------------------------------------------------------------------------------------------------->>>>
+//Test Bluetooth API, if browser support the API, and there are Bluetooth devices around, they all should appear on the list.
+// There is no functionality added, only displays the list
+async function seeEverything(){
+    try{
+        const allDevices = await navigator.bluetooth.requestDevice({acceptAllDevices: true});
+    }catch(error){
+        console.log(error);
+    }
+}
+
+//-------------------------------------------------------------------------------------------------------------------->>>>>>>
+//Initialize Serail Port to Connect to Sensor. Its needs a Headhunter Sensor to be pair first with the device.
+async function connectSym(){ 
+    try {
+        port = await navigator.serial.requestPort();
+        await port.open({ baudRate: 9600 });
+        const decoder = new TextDecoderStream();
+        port.readable.pipeTo(decoder.writable);
+        const inputStream = decoder.readable;
+        reader = inputStream.getReader();
+        writer = port.writable.getWriter();
+        console.log(port);
+        readFromSym();
+        initializeConnection();
+    } catch (error) { 
+        console.log(error);
+    }
+    let conn = await port.connected;
+    console.log(port);
+    console.log(conn);
+    if(await conn){
+        textAreaId.innerHTML += "SYM Paired..." + '\n';
+    }else{
+        textAreaId.innerHTML += "Opss... Try againg..." + '\n';
+    }
+}
+
+//Page after a connections have been set
+function initializeConnection(){
+    textAreaContainer.style.display = textAreaContainerDisplay;
+    mainButtonsContainer.style.display = mainButtonsContainerDisplay;
+    convertContainer.style.display = convertContainerDisplay;
+    hhId.disabled = false;
+    hhId.classList.remove("disable");
+}
+
+//Read the Sensor respond
+async function readFromSym(){
+    try{
+        while (true) {
+            const { value, done } = await reader.read();
+            if (value) {
+                console.log(value + '\n'); 
+                textAreaId.innerHTML += value + '\n';
+                textAreaId.scrollTop = textAreaId.scrollHeight;
+            }
+            if(value.includes('REBOOTING')){
+                delay(4000);
+                initialize();
+                break;
+            }
+            if (done) {
+                reader.releaseLock();
+                break;
+            }
+        }
+    }catch (error) {
+        console.log(error);
+    }
+}
+async function delay(ms){ 
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+//Write commands to sensor
+async function writeToSym(string){
+    textAreaId.innerHTML += '\n\n---- ' + string + ' ----' + '\n';
+    textAreaId.scrollTop = textAreaId.scrollHeight;
+    if(!simulation){
+        try{
+            await writer.write(sendMessages(string));
+        }catch(error){
+            console.log(error); 
+        }
+    }else{
+        simulationInProgress(string);
+    }
+}
+
+//Encode messages to send to Sensor
+function sendMessages(string){
+    try{
+        const encoder = new TextEncoder();
+        const encoded = encoder.encode(string);
+        return new Int8Array(encoded)
+    }catch(error){
+        console.log(error);
+    }
+}
+
+//Simulation running Loop------------------------------------------------------------------------------------->>>>>>>
+//Initilaize Simulation
 function simulate(){
     if(!simulation){
         initializeConnection();
@@ -174,6 +292,7 @@ function simulate(){
     return simulation = !simulation;
 }
 
+//Simulation Loop
 function simulationInProgress(string){
     if(string.includes('<SD>')){
         data = true;
@@ -218,47 +337,22 @@ function simulationInProgress(string){
     }
 }
 
-function d(){
-    dID.style.display = "none";
-    textAreaId.innerHTML += respondToSimulation('<SR>');
-    textAreaId.scrollTop = textAreaId.scrollHeight;
-    showRestart();
-}
-
-function showRestart(){
-    mainButtonsContainer.style.display = "none";
-    convertContainer.style.display = "none";
-    restartSimulationID.style.display = restartSimulationIDDisplay;
-}
-
+//Restart Simulation
 function restartSimulation(){
     initialize();
     simulation = false;
     simulate();
 }
 
-window.onload = function(){
-    initialize();
-    console.log(navigator.platform);
-    console.log(navigator.appVersion);
-    console.log(window.navigator.userAgent);
-    console.log(navigator.userAgentData.brands);
-    const br = navigator.userAgentData.brands;
-    let platformInfo = navigator.platform + "<br/>";
-    for(let i = 0; i < br.length; i++){
-        if((br[i].brand).includes("Not")){ continue; }
-        console.log(br[i].brand + ": " + br[i].version);
-        platformInfo += br[i].brand + ": " + br[i].version + "<br/>"
-    }
-    platformInfo += "<br/>" + navigator.appVersion;
-    deviceInfo.innerHTML = platformInfo;
-    // showAll();
+//Simulation Start Over
+function showRestart(){
+    mainButtonsContainer.style.display = "none";
+    convertContainer.style.display = "none";
+    restartSimulationID.style.display = restartSimulationIDDisplay;
 }
 
-function showSearchButtons(){
-    findButtonsContainer.style.display = findButtonsContainerDisplay;
-}
-
+//--------------------------------------------------------------------------------------------------->>>>>>
+//Show All Button
 function showAll(){
     textAreaContainer.style.display = textAreaContainerDisplay;
     mainButtonsContainer.style.display = mainButtonsContainerDisplay;
@@ -305,6 +399,8 @@ SYM U Original  <ZU>
 To finish . . . . . . . . . <SR>`;
 }
 
+//-------------------------------------------------------------------------------------------->>>>>>>>
+//Show the page like when first load
 function initialize(){
     textAreaContainer.style.display = "none";
     mainButtonsContainer.style.display = "none";
@@ -333,14 +429,8 @@ function initialize(){
     calibateId.classList.add("disable");
 }
 
-function initializeConnection(){
-    textAreaContainer.style.display = textAreaContainerDisplay;
-    mainButtonsContainer.style.display = mainButtonsContainerDisplay;
-    convertContainer.style.display = convertContainerDisplay;
-    hhId.disabled = false;
-    hhId.classList.remove("disable");
-}
-
+//------------------------------------------------------------------------------------------>>>>
+//Enable buttons to interact with sensor
 function enableButtons(){
     findButtonsContainer.style.display = "none";
     scId.disabled = false;
@@ -363,79 +453,14 @@ function enableButtons(){
     nId.classList.remove("disable");
 }
 
-async function connectSym(){ 
-    try {
-        port = await navigator.serial.requestPort();
-        await port.open({ baudRate: 9600 });
-        const decoder = new TextDecoderStream();
-        port.readable.pipeTo(decoder.writable);
-        const inputStream = decoder.readable;
-        reader = inputStream.getReader();
-        writer = port.writable.getWriter();
-        console.log(port);
-        readFromSym();
-        initializeConnection();
-    } catch (error) { 
-        console.log(error);
-    }
-    let conn = await port.connected;
-    console.log(port);
-    console.log(conn);
-    if(await conn){
-        textAreaId.innerHTML += "SYM Paired..." + '\n';
-    }else{
-        textAreaId.innerHTML += "Opss... Try againg..." + '\n';
-    }
-}
-
-async function writeToSym(string){
-    textAreaId.innerHTML += '\n\n---- ' + string + ' ----' + '\n';
+//------------------------------------------------------------------------------------------------------------>>>>>>>
+//Buttons for interacting with sensor
+function d(){
+    dID.style.display = "none";
+    textAreaId.innerHTML += respondToSimulation('<SR>');
     textAreaId.scrollTop = textAreaId.scrollHeight;
-    if(!simulation){
-        try{
-            await writer.write(sendMessages(string));
-        }catch(error){
-            console.log(error); 
-        }
-    }else{
-        simulationInProgress(string);
-    }
+    showRestart();
 }
-
-function sendMessages(string){
-    try{
-        const encoder = new TextEncoder();
-        const encoded = encoder.encode(string);
-        return new Int8Array(encoded)
-    }catch(error){
-        console.log(error);
-    }
-}
-
-async function readFromSym(){
-    try{
-        while (true) {
-            const { value, done } = await reader.read();
-            if (value) {
-                console.log(value + '\n'); 
-                textAreaId.innerHTML += value + '\n';
-                textAreaId.scrollTop = textAreaId.scrollHeight;
-            }
-            if(value.includes('REBOOTING')){
-                delay(4000);
-                initialize();
-                break;
-            }
-            if (done) {
-                reader.releaseLock();
-                break;
-            }
-        }
-    }catch (error) {
-        console.log(error);
-    }
-}
-
 function hh() { 
     writeToSym('hh'); 
     enableButtons();
@@ -485,7 +510,6 @@ function uSym(){
 function reboot(){ 
     writeToSym('<SR>');
 }
-
 function convertSym(){
     mainButtonsContainer.style.display = "none";
     ynContainer.style.display = "none";
@@ -494,13 +518,11 @@ function convertSym(){
     calibateId.disabled = true;
     calibateId.classList.add("disable");
 }
-
 function convertedSym(){
     mainButtonsContainer.style.display = mainButtonsContainerDisplay;
     convertContainer.style.display = convertContainerDisplay;
     olderSymsModelContainer.style.display = "none";
 }
-
 function calibrationSelectionSection(){
     calibrationSection.style.display = calibrationSectionDisplay;
     mainButtonsContainer.style.display = "none";
@@ -508,7 +530,6 @@ function calibrationSelectionSection(){
     convertContainer.style.display = "none";
     writeToSym('<C,>');
 }
-
 function calibratedSym(){
     calibrationSection.style.display = "none";
     mainButtonsContainer.style.display = mainButtonsContainerDisplay;
@@ -516,7 +537,6 @@ function calibratedSym(){
     convertToOlderId.disabled = true;
     convertToOlderId.classList.add("disable");
 }
-
 function submitCalibration(){
     const heigh = heigthRangeId.value;
     const empty = emptyRangeId.value;
@@ -525,8 +545,9 @@ function submitCalibration(){
     calibratedSym();
 }
 
-async function delay(ms){ return new Promise(resolve => setTimeout(resolve, ms)); }
 
+//--------------------------------------------------------------------------------------------------------------->>>>>>>>
+//Simulate a Sensor respond for Simulation Loop
 function respondToSimulation(string){
     let responce = "";
     switch(string.toUpperCase()){
@@ -680,15 +701,8 @@ from the SYM `;
 }
 
 
-async function seeEverything(){
-    try{
-                const allDevices = await navigator.bluetooth.requestDevice({acceptAllDevices: true});
-    }catch(error){
-        console.log(error);
-    }
+/*
+function showSearchButtons(){
+    findButtonsContainer.style.display = findButtonsContainerDisplay;
 }
-
-
-
-
-
+*/
