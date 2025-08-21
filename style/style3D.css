@@ -1,4 +1,6 @@
- 
+
+/*Set the Syle and Colors for 3D Theme*/
+
 :root {
   --darkBlue2: #23408F;
   --mediumBlue2: #0080c4;
@@ -83,6 +85,3 @@ input[type="radio"] { border: 0.1rem solid var(--darkBlue2); background-color: w
 .submit, #dID, #restartSimulationID{ background-image: linear-gradient( var(--submitButton) 60%, var(--submitLight)); }
 
 .disable, .disable:hover, .disable:active{ background-image: linear-gradient( var(--backDisable), var(--backDisableLight)); color: var(--colorDisable); box-shadow: 0rem 0rem 0rem black; text-shadow: 0rem 0rem 0rem black; border-color: transparent; }
-
-
-
