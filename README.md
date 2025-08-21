@@ -1,4 +1,6 @@
-# The company I work for has sensors with Bluetooth capabilities
+# Bluetooth Communication Using Serial Port
+
+The company I work for has sensors with Bluetooth capabilities
 
 The intention of this Webpage was to create a stand-alone, self-contained WebApp to communicate with the sensors through any device, mainly mobile devices.
 
