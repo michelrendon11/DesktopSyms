@@ -1,4 +1,6 @@
 
+/*Main CSS Style Sheet for size and Position of all elements on the page*/
+
 body{ font-family: "Droid Sans", sans-serif; display: flex; flex-direction: column; min-height: 100vh; box-sizing: border-box; }
 
 .content-wrapper { flex-grow: 1; }
@@ -7,6 +9,7 @@ body{ font-family: "Droid Sans", sans-serif; display: flex; flex-direction: colu
 
 .container{ text-align: center; margin-top: 0.5rem; }
 
+/*Headhunter Logo*/
 img{ position: relative; margin-left: 1rem; display: inline;}
 
 h1{ float: left; margin-left: 41%; position: relative; }
@@ -54,6 +57,3 @@ input[type="radio"] { -webkit-appearance: none; -moz-appearance: none; appearanc
 .submit{ margin-bottom: 1rem; width: 9rem;}
 
 .disable, .disable:hover, .disable:active{ font-size: 1rem;}
-
-
-
