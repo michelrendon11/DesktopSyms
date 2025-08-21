@@ -1,4 +1,4 @@
-The company I work for has sensors with Bluetooth capabilities. 
+# The company I work for has sensors with Bluetooth capabilities
 
 The intention of this Webpage was to create a stand-alone, self-contained WebApp to communicate with the sensors through any device, mainly mobile devices.
 
@@ -10,5 +10,4 @@ The page has "Simulate" and "Show All" buttons, just to have a peek of what the 
 
 The page is available at:
 
-https://michelrendon11.github.io/DesktopSyms/
-
+<https://michelrendon11.github.io/DesktopSyms/>
