@@ -1,8 +1,17 @@
+
+<!--
+This page is intended only to work with Headhuner sensors.
+It can show any Bluethoot device within distance, but it does not has any capabilities to interact with it
+The Headhunter sensor needs to be pair with device before pairing wiht the browser.
+Currently only works on Google Chrome on Windows and maybe MAc Computers. The goal in the future is to make it work on mobile devices.
+-->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!--The Style Sheets are control on the index.js--> 
     <link rel="stylesheet" href="style/style3D.css" id="style3D" disabled>
     <link rel="stylesheet" href="style/styleNight.css" id="styleNight" disabled>
     <link rel="stylesheet" href="style/styleDay.css" id="styleDay" >
@@ -10,7 +19,7 @@
     <title>Tank Sentry</title>
 </head>
 <body>
-    <div class="content-wrapper">
+    <div class="content-wrapper"><!--Top Menu-->
         <div class="mainContainer" id="title">
             <h1 class="tankSentry">TANK SENTRY</h1>
             <div class="dropdown">
@@ -28,25 +37,25 @@
             </div>
         </div>
 
-        <div class="container">
+        <div class="container"><!--Page Logo-->
             <img src="logo1.png" alt="Headhunter Logo">
         </div>
 
-        <div class="container">
+        <div class="container"><!--Only appears with simulation running-->
             <h2 class="" id="simulatingTitle">SIMULATION RUNNING</h2>
         </div>
     
-        <div class="container" id="findButtonsContainer">
+        <div class="container" id="findButtonsContainer"><!--The Bluethoot initialization buttons-->
             <button type="button" class="butt" id="seeEverythingId" onclick="seeEverything()">See Everyting Bluetooth</button>
             <button type="button" class="butt" id="FindSymsId" onclick="connectSym()">Find SYM's</button>
         </div>
-
-        <div class="container" id="textAreaContainer">
+<!--The following sections will come in and out off view as the user interact with sensor, they are controlled on the index.js-->
+        <div class="container" id="textAreaContainer"><!--Sensor respond capture area-->
             <label for="textArea"></label>
             <textarea name="textArea" title="SymResponce" id="textAreaId" rows="16" cols="80" disabled wrap="hard"></textarea>
         </div>
 
-        <div class="container" id="mainButtonsContainer">
+        <div class="container" id="mainButtonsContainer"><!--Main buttons to interact with sensor-->
             <button type="button" class="butt set disable" id="hhId" onclick="hh()">Connect/hh</button>
             <button type="button" class="butt set disable" id="scId" onclick="sc()" disabled>Settings &ltSC&gt</button>
             <button type="button" class="butt set disable" id="spId" onclick="sp()" disabled>Purge &ltSP&gt</button>
@@ -55,17 +64,17 @@
             <button type="button" class="butt set reboot disable" id="rebootId" onclick="reboot()" disabled>Reboot &ltSR&gt</button>
         </div>
 
-        <div class="container" id="convertContainer">
+        <div class="container" id="convertContainer"><!--Either convert or calibrate buttons-->
             <button type="button" class="butt convert disable" id="convertToOlderId" onclick="convertSym()" disabled>Convert SYM to older Model</button>
             <button type="button" class="butt convert disable" id="calibateId" onclick="calibrationSelectionSection()" disabled>Calibrate SYM to Tank Height &ltC,&gt</button>
         </div>
 
-        <div class="container" id="ynContainer">
+        <div class="container" id="ynContainer"><!--yes and no buttons while interacting with the sensor, read the sensor respond before selecting the answer-->
             <button type="button" class="butt select yn" id="yId" onclick="y()">Yes &ltY&gt</button>
             <button type="button" class="butt select yn" id="nId" onclick="n()">No &ltN&gt</button>
         </div>
 
-        <div class="container" id="olderSymsModelContainer">
+        <div class="container" id="olderSymsModelContainer"><!--when converting the sensor to an older model-->
             <button type="button" class="butt select zsSym" id="zsSymId" onclick="zsSym()">&ltZS&gt</button>
             <button type="button" class="butt select zmSym" id="zmSymId" onclick="zmSym()">&ltZM&gt</button>
             <button type="button" class="butt select zrSym" id="zrSymId" onclick="zrSym()">&ltZR&gt</button>
@@ -74,7 +83,7 @@
             <button type="button" class="butt select uSym" id="uSymId" onclick="uSym()">&ltZU&gt</button>
         </div>
 
-        <section class="container" id="calibrationSection">
+        <section class="container" id="calibrationSection"><!--Calibrate sensor to a custom tank height-->
             <div class="container" id="calibrationContainer">
                 <div class="container height">
                     <form oninput="heigthOutput.value = heigthRangeId.value">
@@ -109,6 +118,7 @@
         </div> 
     </div>
 
+    <!--Footer section only shows the connected device and browser version-->
     <footer class="mainContainer" id="footerSection">
         <div class="container">
             <p id="deviceInfo"></p>
@@ -120,4 +130,3 @@
     
 </body>
 </html>
-
