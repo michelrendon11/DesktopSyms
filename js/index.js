@@ -1,12 +1,12 @@
 
 //------------------------------------------------------------------------------------------------------->>>>>>
-//Initilize Sensor Communication Global Variables
+//Initialize Sensor Communication Global Variables
 let port = null;
 let reader = null;
 let writer = null;
 
 //---------------------------------------------------------------------------------------------------------------->>>>
-//Initialize buttons and conteiners display style
+//Initialize buttons and containers display style
 const findButtonsContainer = document.getElementById("findButtonsContainer");
 const findButtonsContainerDisplay = findButtonsContainer.style.display;
 
@@ -132,7 +132,7 @@ const simulatingTitleDisplay = simulatingTitle.style.display;
 
 //--------------------------------------------------------------------------------------------->>>>>>>
 let simulation = false; //Boolean for Simulation running Loop
-let data = false; //Boolean for requesting more Data from Sensor
+let data = false; //Boolean for requesting more data from the sensor
 
 //-------------------------------------------------------------------------------------------->>>>>>>>>
 //Setup Page Views Style Sheets
@@ -172,8 +172,8 @@ window.onload = function(){
 }
 
 //------------------------------------------------------------------------------------------------------------------------->>>>
-//Test Bluetooth API, if browser support the API, and there are Bluetooth devices around, they all should appear on the list.
-// There is no functionality added, only displays the list
+//Test Bluetooth API. If the browser supports the API, and there are Bluetooth devices around, they should all appear on the list.
+// There is no functionality added, only displays the list.
 async function seeEverything(){
     try{
         const allDevices = await navigator.bluetooth.requestDevice({acceptAllDevices: true});
@@ -183,7 +183,7 @@ async function seeEverything(){
 }
 
 //-------------------------------------------------------------------------------------------------------------------->>>>>>>
-//Initialize Serail Port to Connect to Sensor. Its needs a Headhunter Sensor to be pair first with the device.
+//Initialize a serial port to connect to the Sensor. It needs a Headhunter Sensor to be paired first with the device.
 async function connectSym(){ 
     try {
         port = await navigator.serial.requestPort();
@@ -209,7 +209,7 @@ async function connectSym(){
     }
 }
 
-//Page after a connections have been set
+//Page after a connection has been set
 function initializeConnection(){
     textAreaContainer.style.display = textAreaContainerDisplay;
     mainButtonsContainer.style.display = mainButtonsContainerDisplay;
@@ -218,7 +218,7 @@ function initializeConnection(){
     hhId.classList.remove("disable");
 }
 
-//Read the Sensor respond
+//Read the Sensor response
 async function readFromSym(){
     try{
         while (true) {
@@ -261,7 +261,7 @@ async function writeToSym(string){
     }
 }
 
-//Encode messages to send to Sensor
+//Encode messages to send to the sensor
 function sendMessages(string){
     try{
         const encoder = new TextEncoder();
@@ -352,7 +352,7 @@ function showRestart(){
 }
 
 //--------------------------------------------------------------------------------------------------->>>>>>
-//Show All Button
+//Show All Buttons
 function showAll(){
     textAreaContainer.style.display = textAreaContainerDisplay;
     mainButtonsContainer.style.display = mainButtonsContainerDisplay;
@@ -400,7 +400,7 @@ To finish . . . . . . . . . <SR>`;
 }
 
 //-------------------------------------------------------------------------------------------->>>>>>>>
-//Show the page like when first load
+//Show the page like when first loaded
 function initialize(){
     textAreaContainer.style.display = "none";
     mainButtonsContainer.style.display = "none";
@@ -547,7 +547,7 @@ function submitCalibration(){
 
 
 //--------------------------------------------------------------------------------------------------------------->>>>>>>>
-//Simulate a Sensor respond for Simulation Loop
+//Simulate a sensor response for Simulation Loop
 function respondToSimulation(string){
     let responce = "";
     switch(string.toUpperCase()){
@@ -706,3 +706,4 @@ function showSearchButtons(){
     findButtonsContainer.style.display = findButtonsContainerDisplay;
 }
 */
+
