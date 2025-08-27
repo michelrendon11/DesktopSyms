@@ -1,4 +1,4 @@
-###Bluetooth Classic Communication Using Serial Port
+### Bluetooth Classic Communication Using Serial Port
 
 The company I work for has sensors with Bluetooth capabilities.
 
