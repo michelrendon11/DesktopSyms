@@ -1,5 +1,5 @@
 
-/*Main CSS Style Sheet for size and Position of all elements on the page*/
+/*Main CSS Style Sheet for the size and position of all elements on the page*/
 
 body{ font-family: "Droid Sans", sans-serif; display: flex; flex-direction: column; min-height: 100vh; box-sizing: border-box; }
 
@@ -57,3 +57,4 @@ input[type="radio"] { -webkit-appearance: none; -moz-appearance: none; appearanc
 .submit{ margin-bottom: 1rem; width: 9rem;}
 
 .disable, .disable:hover, .disable:active{ font-size: 1rem;}
+
