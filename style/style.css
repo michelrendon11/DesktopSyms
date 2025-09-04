@@ -54,28 +54,31 @@ input[type="radio"] { -webkit-appearance: none; -moz-appearance: none; appearanc
 
 .disable, .disable:hover, .disable:active{ font-size: 0.5rem;}
 
-/*Headhunter logo*/
+/*Page H1 title*/
 @media screen and (max-width: 700px) { .tankSentry { margin-left: 5%; } }
 @media screen and ( max-width: 340px) { h1 { font-size: 1.5rem; width: 10rem; height: 3rem; margin: auto;} }
 @media screen and ( max-width: 300px) { h1 { font-size: 1rem; width: 5rem; margin-top: 1rem;} }
 @media screen and ( max-width: 250px) { h1 { font-size: 0.8rem; width: 4rem; margin-top: 1rem;} }
+@media screen and ( max-width: 200px) { h1 { font-size: 0.5rem; width: 2rem; margin-top: 1.5rem;} }
 
 /*Simulation running box*/
 @media screen and ( max-width: 200px) { #simulatingTitle { font-size: 0.5rem; width: 3rem;} }
 
+/*Page Logo*/
 @media screen and (max-width: 450px) { #HHLogo {margin-left: 0; };}
 @media screen and (max-width: 400px) { #HHLogo {margin-left: 0; width: 15rem;};}
 @media screen and (max-width: 300px) { #HHLogo {margin-left: 0; width: 10rem;};}
 @media screen and (max-width: 200px) { #HHLogo {margin-left: 0; width: 5rem;};}
 
-@media screen and ( max-width: 700px) { .height { display: block; } }
-@media screen and ( max-width: 1000px) { .empty { display: block; } }
-
-@media screen and ( max-width: 300px) { #seeEverythingId { width: 10rem; } }
-@media screen and ( max-width: 300px) { #FindSymsId { width: 10rem; } }
+/*Find Buttons*/
+@media screen and ( max-width: 300px) { #FindSymsId, #seeEverythingId { width: 10rem;} }
+@media screen and ( max-width: 200px) { #FindSymsId, #seeEverythingId { width: 5rem; font-size: 0.5rem;} }
 
 @media screen and ( max-width: 400px) { #convertToOlderId { width: 12rem; } }
 @media screen and ( max-width: 400px) { #calibateId { width: 12rem; } }
 @media screen and ( max-width: 300px) { #convertToOlderId { width: 10rem; } }
 @media screen and ( max-width: 300px) { #calibateId { width: 10rem; } }
+
+@media screen and ( max-width: 700px) { .height { display: block; } }
+@media screen and ( max-width: 1000px) { .empty { display: block; } }
 
