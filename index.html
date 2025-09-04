@@ -1,7 +1,9 @@
 
 <!--
-This page is intended only to work with Headhuner sensors. It can show any Bluethoot device within distance, but it does not have any capabilities to interact with it
-The Headhunter sensor needs to be paired with a device before pairing with the browser. Currently, it only works on Google Chrome on Windows and maybe Mac computers. The goal in the future is to make it work on mobile devices.
+This page is intended only to work with Headhuner sensors.
+It can show any Bluethoot device within distance, but it does not has any capabilities to interact with it
+The Headhunter sensor needs to be pair with device before pairing wiht the browser.
+Currently only works on Google Chrome on Windows and maybe MAc Computers. The goal in the future is to make it work on mobile devices.
 -->
 
 <!DOCTYPE html>
@@ -9,7 +11,7 @@ The Headhunter sensor needs to be paired with a device before pairing with the b
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!--The Style Sheets are control from the index.js--> 
+<!--The Style Sheets are control on the index.js-->
     <link rel="stylesheet" href="style/style3D.css" id="style3D" disabled>
     <link rel="stylesheet" href="style/styleNight.css" id="styleNight" disabled>
     <link rel="stylesheet" href="style/styleDay.css" id="styleDay" >
@@ -21,7 +23,7 @@ The Headhunter sensor needs to be paired with a device before pairing with the b
         <div class="mainContainer" id="title">
             <h1 class="tankSentry">TANK SENTRY</h1>
             <div class="dropdown">
-                <button class="dropdown">&#10247;</button>
+                <button type="button" class="dropdown">&#10247;</button>
                 <div class="dropdown-content">
                     <button type="button" class="" onclick="daySheet()">Day Theme</button>
                     <button type="button" class="" onclick="nightSheet()">Night Theme</button>
@@ -42,43 +44,43 @@ The Headhunter sensor needs to be paired with a device before pairing with the b
         <div class="container"><!--Only appears with simulation running-->
             <h2 class="" id="simulatingTitle">SIMULATION RUNNING</h2>
         </div>
-    
+
         <div class="container" id="findButtonsContainer"><!--The Bluethoot initialization buttons-->
             <button type="button" class="butt" id="seeEverythingId" onclick="seeEverything()">See Everyting Bluetooth</button>
             <button type="button" class="butt" id="FindSymsId" onclick="connectSym()">Find SYM's</button>
         </div>
-<!--The following sections will come in and out of view as the user interacts with the sensor. They are controlled on the index.js-->
-        <div class="container" id="textAreaContainer"><!--Sensor response capture area-->
+<!--The following sections will come in and out off view as the user interact with sensor, they are controlled on the index.js-->
+        <div class="container" id="textAreaContainer"><!--Sensor respond capture area-->
             <label for="textAreaId"></label>
             <textarea name="textArea" title="SymResponce" id="textAreaId" rows="16" cols="80" disabled wrap="hard"></textarea>
         </div>
 
         <div class="container" id="mainButtonsContainer"><!--Main buttons to interact with sensor-->
             <button type="button" class="butt set disable" id="hhId" onclick="hh()">Connect/hh</button>
-            <button type="button" class="butt set disable" id="scId" onclick="sc()" disabled>Settings &ltSC&gt</button>
-            <button type="button" class="butt set disable" id="spId" onclick="sp()" disabled>Purge &ltSP&gt</button>
-            <button type="button" class="butt set disable" id="shId" onclick="sh()" disabled>Hold &ltSH&gt</button>
-            <button type="button" class="butt set disable" id="sdId" onclick="sd()" disabled>Data &ltSD&gt</button>
-            <button type="button" class="butt set reboot disable" id="rebootId" onclick="reboot()" disabled>Reboot &ltSR&gt</button>
+            <button type="button" class="butt set disable" id="scId" onclick="sc()" disabled>Settings &lt SC &gt</button>
+            <button type="button" class="butt set disable" id="spId" onclick="sp()" disabled>Purge &lt SP &gt</button>
+            <button type="button" class="butt set disable" id="shId" onclick="sh()" disabled>Hold &lt SH &gt</button>
+            <button type="button" class="butt set disable" id="sdId" onclick="sd()" disabled>Data &lt SD &gt</button>
+            <button type="button" class="butt set reboot disable" id="rebootId" onclick="reboot()" disabled>Reboot &lt SR &gt</button>
         </div>
 
         <div class="container" id="convertContainer"><!--Either convert or calibrate buttons-->
             <button type="button" class="butt convert disable" id="convertToOlderId" onclick="convertSym()" disabled>Convert SYM to older Model</button>
-            <button type="button" class="butt convert disable" id="calibateId" onclick="calibrationSelectionSection()" disabled>Calibrate SYM to Tank Height &ltC,&gt</button>
+            <button type="button" class="butt convert disable" id="calibateId" onclick="calibrationSelectionSection()" disabled>Calibrate SYM to Tank Height &lt C, &gt</button>
         </div>
 
-        <div class="container" id="ynContainer"><!--Yes and no buttons while interacting with the sensor, read the sensor response before selecting the answer.-->
-            <button type="button" class="butt select yn" id="yId" onclick="y()">Yes &ltY&gt</button>
-            <button type="button" class="butt select yn" id="nId" onclick="n()">No &ltN&gt</button>
+        <div class="container" id="ynContainer"><!--yes and no buttons while interacting with the sensor, read the sensor respond before selecting the answer-->
+            <button type="button" class="butt select yn" id="yId" onclick="y()">Yes &lt Y &gt</button>
+            <button type="button" class="butt select yn" id="nId" onclick="n()">No &lt N &gt</button>
         </div>
 
         <div class="container" id="olderSymsModelContainer"><!--when converting the sensor to an older model-->
-            <button type="button" class="butt select zsSym" id="zsSymId" onclick="zsSym()">&ltZS&gt</button>
-            <button type="button" class="butt select zmSym" id="zmSymId" onclick="zmSym()">&ltZM&gt</button>
-            <button type="button" class="butt select zrSym" id="zrSymId" onclick="zrSym()">&ltZR&gt</button>
-            <button type="button" class="butt select sym23qs" id="sym23qsId" onclick="sym23qs()">&lt23QS&gt</button>
-            <button type="button" class="butt select sym23qr" id="sym23qrId" onclick="sym23qr()">&lt23QR&gt</button>
-            <button type="button" class="butt select uSym" id="uSymId" onclick="uSym()">&ltZU&gt</button>
+            <button type="button" class="butt select zsSym" id="zsSymId" onclick="zsSym()">&lt ZS &gt</button>
+            <button type="button" class="butt select zmSym" id="zmSymId" onclick="zmSym()">&lt ZM &gt</button>
+            <button type="button" class="butt select zrSym" id="zrSymId" onclick="zrSym()">&lt ZR &gt</button>
+            <button type="button" class="butt select sym23qs" id="sym23qsId" onclick="sym23qs()">&lt 23QS &gt</button>
+            <button type="button" class="butt select sym23qr" id="sym23qrId" onclick="sym23qr()">&lt 23QR &gt</button>
+            <button type="button" class="butt select uSym" id="uSymId" onclick="uSym()">&lt ZU &gt</button>
         </div>
 
         <section class="container" id="calibrationSection"><!--Calibrate sensor to a custom tank height-->
@@ -86,14 +88,14 @@ The Headhunter sensor needs to be paired with a device before pairing with the b
                 <div class="container height">
                     <form oninput="heigthOutput.value = heigthRangeId.value">
                         <label for="heigthRangeId">Tank Heigth</label>
-                        <output name= "heigthOutput" for="heigthRangeName" >32</output>
+                        <output name="heigthOutput" for="heigthRangeName" >32</output>
                         <input type="range" id="heigthRangeId" name="heigthRangeName" min="9" max="80" value="32" >
                     </form>
                 </div>
                 <div class="container empty">
                     <form oninput="emptyOutput.value = emptyRangeId.value">
                         <label for="emptyRangeId">Empty Point</label>
-                        <output name= "emptyOutput" for="emptyRangeName" >0</output>
+                        <output name="emptyOutput" for="emptyRangeName" >0</output>
                         <input type="range" id="emptyRangeId" name="emptyRangeName" min="0" max="15" value="0">
                     </form>
                 </div>
@@ -110,15 +112,15 @@ The Headhunter sensor needs to be paired with a device before pairing with the b
         </section>
         <div class="container">
             <button type="button" class="butt select d" id="dID" onclick="d()">D</button>
-        </div> 
+        </div>
         <div class="container">
             <button type="button" class="butt set Restart" id="restartSimulationID" onclick="restartSimulation()">Restart</button>
-        </div> 
+        </div>
     </div>
 
       <!--
-   The footer section only shows the connected device and browser version while the page is in development.
-    Once the page is fully working, it will contain more useful information, including contacting the company.
+    Footer section only shows the connected device and browser version while page is in development.
+    Once Page is fully working, It will contain more usefull information including contacting the company.
     -->
     <footer class="mainContainer" id="footerSection">
         <div class="container">
@@ -131,7 +133,4 @@ The Headhunter sensor needs to be paired with a device before pairing with the b
     
 </body>
 </html>
-
-
-
 
