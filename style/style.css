@@ -54,8 +54,10 @@ input[type="radio"] { -webkit-appearance: none; -moz-appearance: none; appearanc
 
 .disable, .disable:hover, .disable:active{ font-size: 1rem;}
 
-@media screen and (max-width: 500px) { #HHLogo {margin-left: 0; width: 15rem;};}
+@media screen and (max-width: 450px) { #HHLogo {margin-left: 0; };}
+@media screen and (max-width: 400px) { #HHLogo {margin-left: 0; width: 15rem;};}
 @media screen and (max-width: 300px) { #HHLogo {margin-left: 0; width: 10rem;};}
+@media screen and (max-width: 200px) { #HHLogo {margin-left: 0; width: 5rem;};}
 
 @media screen and (max-width: 700px) { .tankSentry { margin-left: 5%; } }
 
@@ -69,5 +71,6 @@ input[type="radio"] { -webkit-appearance: none; -moz-appearance: none; appearanc
 @media screen and ( max-width: 400px) { #calibateId { width: 12rem; } }
 @media screen and ( max-width: 300px) { #convertToOlderId { width: 10rem; } }
 @media screen and ( max-width: 300px) { #calibateId { width: 10rem; } }
+
 
 
