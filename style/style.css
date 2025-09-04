@@ -71,15 +71,23 @@ input[type="radio"] { -webkit-appearance: none; -moz-appearance: none; appearanc
 @media screen and (max-width: 200px) { #HHLogo {margin-left: 0; width: 5rem;};}
 
 /*Simulation running box*/
-@media screen and ( max-width: 200px) { #simulatingTitle { font-size: 0.5rem; width: 3rem;} }
+@media screen and ( max-width: 250px) { #simulatingTitle { font-size: 0.5rem; width: 3rem;} }
 
 /*Find Buttons*/
 @media screen and ( max-width: 300px) { #FindSymsId, #seeEverythingId { width: 10rem;} }
 @media screen and ( max-width: 200px) { #FindSymsId, #seeEverythingId { width: 5rem; font-size: 0.5rem;} }
 
-@media screen and ( max-width: 400px) { #convertToOlderId, #calibateId { width: 12rem; } }
-@media screen and ( max-width: 300px) { #convertToOlderId, #calibateId { width: 10rem; } }
-@media screen and ( max-width: 200px) { #convertToOlderId, #calibateId {  width: 5rem; font-size: 0.5rem; } }
+/*Set buttons*/
+@media screen and ( max-width: 200px) { .set { width: 5rem; font-size: 0.5rem;} }
+
+/*Convert buttons*/
+@media screen and ( max-width: 400px) { .convert { width: 12rem; } }
+@media screen and ( max-width: 300px) { .convert { width: 10rem; } }
+@media screen and ( max-width: 200px) { .convert {  width: 5rem; font-size: 0.5rem; } }
+
+/*Submit and restart buttons*/
+@media screen and ( max-width: 200px) { .submit { width: 5rem; font-size: 0.5rem;} }
+@media screen and ( max-width: 200px) { .Restart { width: 5rem; font-size: 0.5rem;} }
 
 @media screen and ( max-width: 700px) { .height { display: block; } }
 @media screen and ( max-width: 1000px) { .empty { display: block; } }
