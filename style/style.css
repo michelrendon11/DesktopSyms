@@ -59,10 +59,10 @@ input[type="radio"] { -webkit-appearance: none; -moz-appearance: none; appearanc
 @media screen and ( max-width: 340px) { h1 { font-size: 1.5rem; width: 10rem; height: 3rem; margin: auto;} }
 @media screen and ( max-width: 300px) { h1 { font-size: 1rem; width: 5rem; margin-top: 1rem;} }
 @media screen and ( max-width: 250px) { h1 { font-size: 0.8rem; width: 4rem; margin-top: 1rem;} }
-@media screen and ( max-width: 200px) { h1 { font-size: 0.5rem; width: 1.5rem; margin-top: 1.5rem;} }
+@media screen and ( max-width: 200px) { h1 { font-size: 0.6rem; width: 2rem; margin-top: 1.5rem;} }
 
 /*Drop down menu*/
-@media screen and ( max-width: 200px) { dropdown { font-size: 1rem; margin-right: 0;} }
+@media screen and ( max-width: 200px) { .dropdown { margin-right: 0;} }
 
 /*Page Logo*/
 @media screen and (max-width: 450px) { #HHLogo {margin-left: 0; };}
