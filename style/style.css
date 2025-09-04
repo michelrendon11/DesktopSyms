@@ -1,5 +1,5 @@
 
-/*Main CSS Style Sheet for the size and position of all elements on the page*/
+/*Main CSS Style Sheet for size and Position of all elements on the page*/
 
 body{ font-family: "Droid Sans", sans-serif; display: flex; flex-direction: column; min-height: 100vh; box-sizing: border-box; }
 
@@ -13,7 +13,6 @@ body{ font-family: "Droid Sans", sans-serif; display: flex; flex-direction: colu
 img{ position: relative; margin-left: 1rem; display: inline;}
 
 h1{ float: left; margin-left: 41%; position: relative; }
-@media screen and (max-width: 700px) { .tankSentry { margin-left: 5%; } }
 
 #simulatingTitle{ font-weight: bolder; display: inline-block; height: auto; margin: auto; padding: 1rem; }
 
@@ -30,7 +29,7 @@ textarea{ resize: none; border-width: 1rem; width: 70%; }
 
 #textAreaContainer{ margin-left: -0.5rem; }
 
-.butt{ padding: 0.5rem; font-size: 1rem; font-weight: bold; margin-top: 0.2rem;  width: 15rem; margin: 02.rem; }
+.butt{ padding: 0.5rem; font-size: 1rem; font-weight: bold; margin-top: 0.2rem;  width: 15rem; margin: 0.2rem; }
 
 .select{ width: 6rem; margin-inline: 0.5rem; }
 
@@ -39,9 +38,6 @@ textarea{ resize: none; border-width: 1rem; width: 70%; }
 .convert{ width: 20rem; margin-inline: 0.5rem; }
 
 #calibrationContainer{ font-weight: bold; font-size: 1.3rem; box-sizing: border-box; width: 100%; align-items: center; margin: auto; margin-top: 1rem; height: auto; padding: 1rem 0rem; }
-
-@media screen and ( max-width: 700px) { .height { display: block; } }
-@media screen and ( max-width: 1000px) { .empty { display: block; } }
 
 div input, div label{ font-size: 1.2rem; margin: 0.5rem 0rem; padding-inline: 0.5rem; display: inline; }
 
@@ -57,4 +53,18 @@ input[type="radio"] { -webkit-appearance: none; -moz-appearance: none; appearanc
 .submit{ margin-bottom: 1rem; width: 9rem;}
 
 .disable, .disable:hover, .disable:active{ font-size: 1rem;}
+
+@media screen and (max-width: 700px) { #HHLogo {margin-left: 0};}
+@media screen and (max-width: 700px) { .tankSentry { margin-left: 5%; } }
+
+@media screen and ( max-width: 700px) { .height { display: block; } }
+@media screen and ( max-width: 1000px) { .empty { display: block; } }
+
+@media screen and ( max-width: 300px) { #seeEverythingId { width: 10rem; } }
+@media screen and ( max-width: 300px) { #FindSymsId { width: 10rem; } }
+
+@media screen and ( max-width: 400px) { #convertToOlderId { width: 12rem; } }
+@media screen and ( max-width: 400px) { #calibateId { width: 12rem; } }
+@media screen and ( max-width: 300px) { #convertToOlderId { width: 10rem; } }
+@media screen and ( max-width: 300px) { #calibateId { width: 10rem; } }
 
