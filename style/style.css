@@ -52,7 +52,7 @@ input[type="radio"] { -webkit-appearance: none; -moz-appearance: none; appearanc
 
 .submit{ margin-bottom: 1rem; width: 9rem;}
 
-.disable, .disable:hover, .disable:active{ font-size: 0.5rem;}
+.disable, .disable:hover, .disable:active{ font-size: 1rem;}
 
 /*Page H1 title*/
 @media screen and (max-width: 700px) { .tankSentry { margin-left: 5%; } }
@@ -91,4 +91,5 @@ input[type="radio"] { -webkit-appearance: none; -moz-appearance: none; appearanc
 
 @media screen and ( max-width: 700px) { .height { display: block; } }
 @media screen and ( max-width: 1000px) { .empty { display: block; } }
+
 
