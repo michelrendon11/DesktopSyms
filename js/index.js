@@ -129,10 +129,13 @@ const simulatePage = document.getElementById("simulatePage");
 const simulatingTitle = document.getElementById("simulatingTitle");
 const simulatingTitleDisplay = simulatingTitle.style.display;
 
+const showAllPage = document.getElementById("showAllId");
+
 
 //--------------------------------------------------------------------------------------------->>>>>>>
 let simulation = false; //Boolean for Simulation running Loop
 let data = false; //Boolean for requesting more data from the sensor
+let isShowllAll = false; //Boolean for enable and disable Show All
 
 //-------------------------------------------------------------------------------------------->>>>>>>>>
 //Setup Page Views Style Sheets
@@ -276,6 +279,7 @@ function sendMessages(string){
 //Initilaize Simulation
 function simulate(){
     if(!simulation){
+        initialize();
         initializeConnection();
         findButtonsContainer.style.display = "none";
         textAreaId.innerHTML += "SYM Paired..." + '\n';
@@ -286,8 +290,7 @@ function simulate(){
     }
     if(simulation){
         initialize();
-        simulatePage.innerHTML = 'Simulate';
-        simulatePage.style.color = "white";
+        simulation = true;
     }
     return simulation = !simulation;
 }
@@ -340,7 +343,6 @@ function simulationInProgress(string){
 //Restart Simulation
 function restartSimulation(){
     initialize();
-    simulation = false;
     simulate();
 }
 
@@ -354,32 +356,38 @@ function showRestart(){
 //--------------------------------------------------------------------------------------------------->>>>>>
 //Show All Buttons
 function showAll(){
-    textAreaContainer.style.display = textAreaContainerDisplay;
-    mainButtonsContainer.style.display = mainButtonsContainerDisplay;
-    convertContainer.style.display = convertContainerDisplay;
-    ynContainer.style.display = ynContainerDisplay;
-    olderSymsModelContainer.style.display = olderSymsModelContainerDisplay;
-    calibrationSection.style.display = calibrationSectionDisplay;
-    simulatingTitle.style.display = simulatingTitleDisplay;
-    dID.style.display = dIDDisplay;
-    restartSimulationID.style.display = restartSimulationIDDisplay;
-    hhId.disabled = false;
-    hhId.classList.remove("disable");
-    scId.disabled = false;
-    scId.classList.remove("disable");
-    spId.disabled = false;
-    spId.classList.remove("disable");
-    sdId.disabled = false;
-    sdId.classList.remove("disable");
-    shId.disabled = false;
-    shId.classList.remove("disable");
-    rebootId.disabled = false;
-    rebootId.classList.remove("disable");
-    convertToOlderId.disabled = false;
-    convertToOlderId.classList.remove("disable");
-    calibateId.disabled = false;
-    calibateId.classList.remove("disable");
-    textAreaId.innerHTML = `
+    if(!isShowllAll){
+        initialize();
+        showAllPage.innerHTML = 'Show NONE';
+        showAllPage.style.fontWeight = "bold";
+        showAllPage.style.color = "#f99090";
+        isShowllAll = true;
+        textAreaContainer.style.display = textAreaContainerDisplay;
+        mainButtonsContainer.style.display = mainButtonsContainerDisplay;
+        convertContainer.style.display = convertContainerDisplay;
+        ynContainer.style.display = ynContainerDisplay;
+        olderSymsModelContainer.style.display = olderSymsModelContainerDisplay;
+        calibrationSection.style.display = calibrationSectionDisplay;
+        simulatingTitle.style.display = simulatingTitleDisplay;
+        dID.style.display = dIDDisplay;
+        restartSimulationID.style.display = restartSimulationIDDisplay;
+        hhId.disabled = false;
+        hhId.classList.remove("disable");
+        scId.disabled = false;
+        scId.classList.remove("disable");
+        spId.disabled = false;
+        spId.classList.remove("disable");
+        sdId.disabled = false;
+        sdId.classList.remove("disable");
+        shId.disabled = false;
+        shId.classList.remove("disable");
+        rebootId.disabled = false;
+        rebootId.classList.remove("disable");
+        convertToOlderId.disabled = false;
+        convertToOlderId.classList.remove("disable");
+        calibateId.disabled = false;
+        calibateId.classList.remove("disable");
+        textAreaId.innerHTML = `
     Connected...
 
 HELLO
@@ -397,11 +405,20 @@ To Replace old SYM:
 <23QS>  <23QR> 
 SYM U Original  <ZU>
 To finish . . . . . . . . . <SR>`;
+    }else if(isShowllAll){
+        initialize();
+    }
 }
 
 //-------------------------------------------------------------------------------------------->>>>>>>>
 //Show the page like when first loaded
 function initialize(){
+    isShowllAll = false;
+    showAllPage.innerHTML = 'SHow All';
+    showAllPage.style.color = "white";
+    simulatePage.innerHTML = 'Simulate';
+    simulatePage.style.color = "white";
+    simulation = false;
     textAreaContainer.style.display = "none";
     mainButtonsContainer.style.display = "none";
     convertContainer.style.display = "none";
